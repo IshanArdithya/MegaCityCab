@@ -29,26 +29,104 @@ body {
 
 /* Hero Section */
 
-.hero-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+.slider-container {
+  position: relative;
+  overflow-x: hidden;
 }
 
-.hero-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+.slider {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-container img.active {
-    opacity: 1;
+.slider .list {
+  position: absolute;
+  width: max-content;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  transition: 1s;
+}
+
+.slider .list img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.slider .buttons {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.slider .buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.slider .buttons button:hover {
+  opacity: 0.6;
+}
+
+.slider .dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.slider .dots li {
+  list-style: none;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.slider .dots li.active {
+  width: 30px;
+}
+
+.slider-logobtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+  z-index: 3;
+}
+
+.slider-logobtn a {
+  display: inline-block;
+  margin: 0 10px;
 }
 
 .hero-content {
@@ -182,3 +260,166 @@ nav ul .main-navigation::after {
 nav ul .main-navigation.active::after {
     width: 100%;
 }
+
+/* Key Features */
+
+#key-features {
+    padding: 50px 20px;
+}
+
+.features-header-wrap {
+    text-align: center;
+}
+
+.features-badge {
+    background-color: #f0f0f0;
+    color: #14b8a6;
+    border-radius: 999px;
+    height: 24px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.features-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--blue-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: baseline;
+    padding: 15px;
+    width: 320px;
+    gap: 1.5rem;
+    transition: 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: white;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.feature-icon-wrapper i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.feature-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.feature-title {
+    font-size: 1.4rem;
+    color: var(--blue-color);
+    line-height: 1.75rem;
+    font-weight: 600;
+}
+
+.feature-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.75rem;
+}
+
+/* How it Works */
+
+.how-it-works {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.how-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--blue-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.how-steps-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.how-step {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    min-height: 250px;
+}
+
+.how-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    background: #f0f0f0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+}
+
+.how-step-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.how-step p {
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1;
+}
+
+.how-arrow {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.section-divider {
+    width: 100%;
+    height: 2px;
+    background-color: #dfdfdf;
+    margin: 40px 0;
+}
+
+/* Testimonials */
+
