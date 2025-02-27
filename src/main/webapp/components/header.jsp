@@ -3,12 +3,12 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <a href="/MegaCityCab/index.php"><img src="https://placehold.co/500x100" alt=""></a>
+                    <a href="/MegaCityCab/index.jsp"><img src="https://placehold.co/500x100" alt=""></a>
                 </div>
                 <ul>
-                    <li class="main-navigation"><a href="/MegaCityCab/index.php">Home</a></li>
-                    <li class="main-navigation"><a href="/MegaCityCab/about.php">About</a></li>
-                    <li class="main-navigation"><a href="/MegaCityCab/tours.php">Bookings</a></li>
+                    <li class="main-navigation"><a href="/MegaCityCab/index.jsp">Home</a></li>
+                    <li class="main-navigation"><a href="/MegaCityCab/about.jsp">About</a></li>
+                    <li class="main-navigation"><a href="/MegaCityCab/bookings.jsp">Bookings</a></li>
                 </ul>
             </nav>
         </div>

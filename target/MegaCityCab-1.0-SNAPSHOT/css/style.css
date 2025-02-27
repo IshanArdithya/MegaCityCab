@@ -2,6 +2,7 @@
 
 :root {
     --primary-color: #2095ae;
+    --primary-color2: #00afb4;
     --secondary-color: #e8e8e8;
     --text-dark: #0f172a;
     --text-light: #94a3b8;
@@ -49,6 +50,20 @@ body {
     height: 2px;
     width: 5rem;
     background-color: var(--primary-color);
+}
+
+/* using this as an overlay over the images ( to make images darker ) */
+.low-dark {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  border-radius: 5px;
+  z-index: 1;
 }
 
 /* Hero Section */
@@ -285,9 +300,9 @@ nav ul .main-navigation.active::after {
     width: 100%;
 }
 
-/* Key Features */
+/* Get Started */
 
-#key-features {
+#get-started {
     padding: 50px 20px;
 }
 
@@ -408,7 +423,7 @@ nav ul .main-navigation.active::after {
     transform: translateX(-50%);
     width: 60px;
     height: 60px;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     border-radius: 50%;
     z-index: -1;
     transition: 0.4s ease-in-out;
@@ -513,7 +528,7 @@ nav ul .main-navigation.active::after {
     width: 75%;
     aspect-ratio: 1;
     border-radius: 100%;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     z-index: -1;
     transition: 0.5s;
 }
@@ -561,7 +576,7 @@ nav ul .main-navigation.active::after {
 .testimonials-card h6 {
     font-size: 1rem;
     font-weight: 400;
-    color: var(--text-light);
+    color: #FF9529;
     transition: 0.3s;
 }
 
@@ -573,7 +588,7 @@ nav ul .main-navigation.active::after {
     color: var(--white-color);
 }
 
-.testimonials-card:hover :is(p, h6) {
+.testimonials-card:hover :is(p) {
     color: var(--secondary-color);
 }
 
@@ -603,7 +618,7 @@ nav ul .main-navigation.active::after {
 /* Footer */
 
 .footer {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     color: #fff;
     padding: 3rem 0;
 }
@@ -684,7 +699,7 @@ nav ul .main-navigation.active::after {
 #faq-section {
     max-width: 1200px;
     margin: auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 2.5rem 1rem;
     text-align: center;
 }
 
@@ -751,7 +766,8 @@ nav ul .main-navigation.active::after {
     gap: 30px;
     background: var(--white-color);
     border-radius: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+            0 -4px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
@@ -761,7 +777,7 @@ nav ul .main-navigation.active::after {
     flex-direction: column;
     gap: 2.5rem;
     border-radius: 15px;
-    background: linear-gradient(135deg, #2095ae, #00afb4);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     color: var(--white-color);
     padding: 40px 30px;
     width: 35%;
@@ -778,7 +794,7 @@ nav ul .main-navigation.active::after {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: linear-gradient(135deg, #00afb4, #2095ae);
+    background: linear-gradient(135deg, var(--primary-color2), var(--primary-color));
     filter: blur(50px);
     transition: 0.5s ease-in-out;
     z-index: -1;
@@ -922,7 +938,7 @@ nav ul .main-navigation.active::after {
 }
 
 .contact-form button {
-    background: linear-gradient(135deg, #2095ae, #00afb4);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -936,7 +952,7 @@ nav ul .main-navigation.active::after {
 }
 
 .contact-form button:hover {
-    background: linear-gradient(135deg, #00afb4, #2095ae);
+    background: linear-gradient(135deg, var(--primary-color2), var(--primary-color));
     transform: scale(1.05);
 }
 

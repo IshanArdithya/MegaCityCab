@@ -42,13 +42,11 @@
                     <li class="active"></li>
                     <li></li>
                     <li></li>
-                    <li></li>
-                    <li></li>
                 </ul>
             </div>
         </div>
         <div class="container">
-            <section id="key-features">
+            <section id="get-started">
                 <div class="features-container">
                     <div class="features-header-wrap">
                         <span class="features-badge">Services</span>
@@ -388,7 +386,7 @@
                             </div>
 
 
-                            <button type="submit">Send Message</button>
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
