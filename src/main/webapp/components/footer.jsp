@@ -18,7 +18,7 @@
                 <h3>Contact Us</h3>
                 <p><i class="ri-phone-fill"></i> 011-022-0333</p>
                 <p><i class="ri-phone-fill"></i> 055-555-5555</p>
-                <p><i class="ri-mail-fill"></i> tours@megacitycab.com</p>
+                <p><i class="ri-mail-fill"></i> support@megacitycab.com</p>
             </div>
             <div class="footer-column">
                 <h3>Links</h3>

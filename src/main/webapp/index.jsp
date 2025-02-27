@@ -314,8 +314,85 @@
 
             <div class="section-divider"></div>
 
+            <section id="contact-us-section">
+                <span class="features-badge">Contact Us</span>
+                <h1 class="main-title">Have a Question?</h1>
+
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div>
+                            <h2>Contact Information</h2>
+                            <p>If you have any questions, Contact Us!</p>
+                        </div>
+                        <div class="contact-info-flex">
+                            <div class="contact-info-icon">
+                                <i class="ri-phone-fill"></i>
+                            </div>
+                            <div>
+                                <p>+94 11 241 1231</p>
+                                <p>+94 11 312 1561</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-flex">
+                            <div class="contact-info-icon">
+                                <i class="ri-mail-fill"></i>
+                            </div>
+                            <div>
+                                <p>support@megacitycab.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-flex">
+                            <div class="contact-info-icon">
+                                <i class="ri-map-pin-2-fill"></i>
+                            </div>
+                            <div>
+                                <p>Colombo, Sri Lanka</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form class="contact-form-flex">
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="entryarea">
+                                        <input type="text" required>
+                                        <div class="labelline">Name *</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="entryarea">
+                                        <input type="email" required>
+                                        <div class="labelline">Email *</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="entryarea">
+                                        <input type="text" required>
+                                        <div class="labelline">Subject *</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="entryarea">
+                                        <textarea></textarea>
+                                        <div class="labelline">Message *</div>
+                                    </div>
+                                </div>
+                            </div>
 
 
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
 
         </div>
 
