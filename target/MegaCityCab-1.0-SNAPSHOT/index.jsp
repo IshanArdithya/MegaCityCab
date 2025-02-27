@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     </head>
     <body>
@@ -51,7 +52,7 @@
                 <div class="features-container">
                     <div class="features-header-wrap">
                         <span class="features-badge">Services</span>
-                        <h2 class="features-title">Why Choose Mega City Cab?</h2>
+                        <h2 class="features-title main-title">Why Choose Mega City Cab?</h2>
                     </div>
                     <div class="features-grid">
                         <div class="feature">
@@ -115,7 +116,8 @@
             <div class="section-divider"></div>
 
             <section class="how-it-works">
-                <h2 class="how-title">How It Works</h2>
+                <span class="features-badge">Process</span>
+                <h2 class="how-title main-title">How It Works</h2>
                 <div class="how-steps-wrapper">
                     <div class="how-step">
                         <div class="how-icon"><i class="fas fa-pencil-alt"></i></div>
@@ -146,11 +148,183 @@
                 </div>
             </section>
 
+            <div class="section-divider"></div>
+
+            <section class="testimonials-section">
+                <span class="features-badge">Testimonials</span>
+                <h1 class="main-title">What our customers say</h1>
+                <div class="swiper testimonials-swiper">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Reliable and Safe</h4>
+                                <p>
+                                    Always on time and super professional! The drivers are courteous, and I feel safe
+                                    every time I use Mega City Cab.
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Allan Collins</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Best Cab Service</h4>
+                                <p>
+                                    The booking process is seamless, and the drivers know the city well. Affordable prices
+                                    and excellent service!
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Tanya Grant</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Fast and Convenient</h4>
+                                <p>
+                                    Needed a last-minute ride to the airport, and Mega City Cab was there in no time!
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Clay Washington</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Professional Drivers</h4>
+                                <p>
+                                    Every driver I've had has been polite and professional. The cars are clean, and the rides
+                                    are smooth. Great service every time!
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Emily Johnson</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Affordable and Transparent Pricing</h4>
+                                <p>
+                                    No hidden fees, and the pricing is very fair. Definitely the best cab service in town!
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Michael Brown</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials-card">
+                                <span><i class="ri-double-quotes-l"></i></span>
+                                <h4>Easy Booking Process</h4>
+                                <p>
+                                    Booking a cab has never been easier. Their system is user-friendly, and I always
+                                    get instant confirmations. Super convenient!
+                                </p>
+                                <div>
+                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <h5>Sarah Lee</h5>
+                                    <h6>★★★★★</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="faq-section">
+                <span class="features-badge">FAQ</span>
+                <h1 class="main-title">Frequently Asked Questions</h1>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I get started?</h3>
+                            <button class="faq-toggle">
+                                <i class="ri-add-fill"></i>
+                            </button>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply sign up, and once you're registered, you can book a cab right away!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I book a cab?</h3>
+                            <button class="faq-toggle">
+                                <i class="ri-add-fill"></i>
+                            </button>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply enter your pickup and drop-off details, select a cab, and confirm your booking.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What areas do you service?</h3>
+                            <button class="faq-toggle">
+                                <i class="ri-add-fill"></i>
+                            </button>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer Mega City Cab services across Sri Lanka, covering popular attractions and residential areas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I bring my pet during the ride?</h3>
+                            <button class="faq-toggle">
+                                <i class="ri-add-fill"></i>
+                            </button>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, pets are allowed. Drivers may ask that your pet sits on a blanket or tarp provided by them. Please note that by law, drivers have the right to decline the trip if this request is not followed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+
+
+
         </div>
 
         <%@ include file="components/footer.jsp" %>
-        
+
         <script src="js/hero-section.js"></script>
+        <script src="js/testimonials-section.js"></script>
+        <script src="js/faq-section.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     </body>
 </html>

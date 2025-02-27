@@ -3,7 +3,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <a href="/ExploreSriLanka/index.php"><img src="https://placehold.co/500x100" alt=""></a>
+                    <a href="/MegaCityCab/index.php"><img src="https://placehold.co/500x100" alt=""></a>
                 </div>
                 <ul>
                     <li class="main-navigation"><a href="/MegaCityCab/index.php">Home</a></li>
