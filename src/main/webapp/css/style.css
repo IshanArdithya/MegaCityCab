@@ -997,13 +997,72 @@ nav ul .main-navigation.active::after {
 
 .login-content {
     width: 50%;
-    padding: 3rem 0 0 5rem;
+    padding: 3rem 0 0 0;
 }
 
 .login {
     width: 100%;
     max-width: 400px;
     padding: 2rem;
+}
+
+.login-message {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    gap: 1.1rem;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: var(--white-color);
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    padding: 2rem;
+    max-width: 400px;
+}
+
+.login-message-sign-up {
+    display:flex;
+    flex-direction: column;
+}
+
+.login-message-sign-up p {
+    margin-bottom: 7px;
+}
+
+.login-message h2 {
+    font-size: 2.5rem !important;
+    font-weight: 700;
+    color: var(--white-color) !important;
+}
+
+.login-message p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.login-switch-btn {
+    background: transparent;
+    border: 1px solid var(--white-color);
+    text-transform: uppercase;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    transition: background 0.5s ease-in-out, transform 0.2s ease;
+}
+
+.login-switch-btn:hover {
+    transform: scale(1.05);
+}
+
+.login-switch-btn:active {
+    transform: scale(0.98);
 }
 
 .taxi-image {
@@ -1059,6 +1118,31 @@ nav ul .main-navigation.active::after {
     margin-bottom: 15px;
 }
 
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.input-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #666;
+}
+
 .login-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
     border: none;
@@ -1069,7 +1153,6 @@ nav ul .main-navigation.active::after {
     cursor: pointer;
     transition: 0.3s;
     font-weight: 600;
-    margin-top: 15px;
     transition: background 0.5s ease-in-out, transform 0.2s ease;
 }
 
@@ -1080,6 +1163,30 @@ nav ul .main-navigation.active::after {
 
 .login-btn:active {
     transform: scale(0.98);
+}
+
+@keyframes smoothMoveFadeRight {
+  0% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+  40% {
+      transform: translateX(7px);
+      opacity: 0.8;
+  }
+  70% {
+      transform: translateX(14px);
+      opacity: 0.4;
+  }
+  100% {
+      transform: translateX(19px);
+      opacity: 0;
+  }
+}
+
+.animate-icon {
+  display: inline-block;
+  animation: smoothMoveFadeRight 1.5s linear infinite;
 }
 
 .signup-text {
@@ -1094,18 +1201,41 @@ nav ul .main-navigation.active::after {
     text-decoration: none;
 }
 
-.footer-text {
-    position: absolute;
-    bottom: 20px;
+.login-footer-text {
+    position: relative;
+    bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 5rem;
+    align-items: center;
+    padding: 0 0 0 2rem;
     font-size: 14px;
     font-weight: 600;
     color: #666;
 }
 
+.login-container .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-text {
+    display: flex;
+    gap: 2rem;
+}
+
 .right-text {
     text-align: right;
+}
+
+.right-text a {
+    color: var(--white-color);
+    font-size: 1.2rem;
+    font-weight: 100; 
+}
+
+.right-text .footer-socials {
+    display: flex;
+    gap: 1rem;
 }
