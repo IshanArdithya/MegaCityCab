@@ -17,6 +17,7 @@
 
         <div class="login-container">
             <div class="container">
+
                 <div class="login-content">
                     <div class="login">
                         <h2>Welcome To</h2>
@@ -42,7 +43,6 @@
                                         class="ri-arrow-right-double-fill animate-icon"></i></button>
                             </div>
                         </form>
-                        <!--                    <p class="signup-text">Don't have an account? <a href="#">SIGN UP</a></p>-->
                     </div>
                 </div>
 
@@ -82,6 +82,24 @@
                             <h2>Create Account</h2>
                             <h1 class="brand-name">Mega City Cab</h1>
                             <form>
+                                <div class="form-row">
+                                    <div class="login-form-group">
+                                        <label>First Name</label>
+                                        <div class="input-container">
+                                            <input type="text" required>
+                                            <i class="ri-user-fill input-icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-form-group">
+                                        <label>Last Name</label>
+                                        <div class="input-container">
+                                            <input type="text" required>
+                                            <i class="ri-user-fill input-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="login-form-group">
                                     <label>Email</label>
                                     <div class="input-container">
@@ -90,11 +108,21 @@
                                     </div>
                                 </div>
 
-                                <div class="login-form-group">
-                                    <label>Password</label>
-                                    <div class="input-container">
-                                        <input type="password" required>
-                                        <i class="ri-lock-password-fill input-icon"></i>
+                                <div class="form-row">
+                                    <div class="login-form-group">
+                                        <label>Password</label>
+                                        <div class="input-container">
+                                            <input type="password" required>
+                                            <i class="ri-lock-password-fill input-icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-form-group">
+                                        <label>Re-Enter Password</label>
+                                        <div class="input-container">
+                                            <input type="password" required>
+                                            <i class="ri-lock-password-fill input-icon"></i>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -108,7 +136,7 @@
 
                 <div class="register-message">
                     <h2>Join Us Today!</h2>
-                    <p>Start your journey with Mega City Cab by creating an account. Book rides seamlessly!</p>
+                    <p>Start your journey with Mega City Cab by creating an account.</p>
                     <div class="login-message-sign-up">
                         <p>Already have an account?</p>
                         <button class="register-switch-btn">Sign In</button>

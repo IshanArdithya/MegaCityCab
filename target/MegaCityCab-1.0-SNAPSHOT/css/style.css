@@ -1178,14 +1178,13 @@ nav ul .main-navigation.active::after {
 
 .login-content,
 .register-content {
-    width: 50%;
     padding: 3rem 0 0 0;
 }
 
 .login,
 .register {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     padding: 2rem;
 }
 
@@ -1219,6 +1218,15 @@ nav ul .main-navigation.active::after {
     padding-top: 4rem;
     display: flex;
     flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .login-form-group {
+    flex: 1;
 }
 
 .login-form-group {
