@@ -312,7 +312,7 @@ nav ul .main-navigation.active::after {
 
 .features-badge {
     background-color: #f0f0f0;
-    color: #14b8a6;
+    color: var(--primary-color);
     border-radius: 999px;
     height: 24px;
     font-size: 0.875rem;
@@ -640,7 +640,7 @@ nav ul .main-navigation.active::after {
 
 .footer-brand p {
     font-size: 0.9rem;
-    color: #b2b2b2;
+    color: var(--secondary-color);
 }
 
 .footer-brand img {
@@ -654,6 +654,7 @@ nav ul .main-navigation.active::after {
     color: #fff;
     font-size: 1.2rem;
     margin-right: 10px;
+    transition: 0.3s;
 }
 
 .footer-links {
@@ -669,19 +670,21 @@ nav ul .main-navigation.active::after {
 
 .footer-column a {
     display: block;
-    color: #b2b2b2;
+    color: var(--secondary-color);
     text-decoration: none;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    transition: 0.3s;
 }
 
 .footer-column p {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #b2b2b2;
+    color: var(--secondary-color);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    transition: 0.3s;
 }
 
 .footer-column i {
@@ -690,8 +693,9 @@ nav ul .main-navigation.active::after {
 }
 
 .footer-column a:hover,
-.footer-column p:hover{
-    color: #1abc9c;
+.footer-column p:hover,
+.footer-socials a:hover{
+    opacity: 0.8;
 }
 
 /* FAQ */
@@ -958,4 +962,150 @@ nav ul .main-navigation.active::after {
 
 .contact-form button:active {
     transform: scale(0.98);
+}
+
+/* Login */
+
+.login-container {
+    position: relative;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 80px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.login-container::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -65%);
+    width: 85%;
+    aspect-ratio: 1;
+    border-radius: 120%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.login-content {
+    width: 50%;
+    padding: 3rem 0 0 5rem;
+}
+
+.login {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.taxi-image {
+    width: 50%;
+    height: 100%;
+    background: url("../images/gallery/taxi.png") no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+}
+
+.login-container h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+.login-container label {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.login-container input {
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: 10px;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color2));
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background 0.5s ease-in-out, transform 0.2s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, var(--primary-color2), var(--primary-color));
+    transform: scale(1.05);
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+}
+
+.signup-text {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+.signup-text a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-text {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+}
+
+.right-text {
+    text-align: right;
 }
