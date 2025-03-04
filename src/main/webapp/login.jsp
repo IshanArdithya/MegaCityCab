@@ -13,9 +13,9 @@
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     </head>
     <body>
-        <%@ include file="components/header.jsp" %>
 
         <div class="login-container">
+            <%@ include file="components/header.jsp" %>
             <div class="container">
 
                 <div class="login-content">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="login-form-group">
-                                <button type="submit" class="login-btn">LOGIN <i
+                                <button type="submit" class="login-btn">SIGN IN <i
                                         class="ri-arrow-right-double-fill animate-icon"></i></button>
                             </div>
                         </form>
@@ -75,6 +75,7 @@
         </div>
 
         <div class="register-container" style="display: none;">
+            <%@ include file="components/header.jsp" %>
             <div class="container">
                 <div class="register-container-sub">
                     <div class="register-content">
@@ -100,11 +101,20 @@
                                     </div>
                                 </div>
 
-                                <div class="login-form-group">
-                                    <label>Email</label>
-                                    <div class="input-container">
-                                        <input type="email" required>
-                                        <i class="ri-mail-fill input-icon"></i>
+                                <div class="form-row">
+                                    <div class="login-form-group">
+                                        <label>Email</label>
+                                        <div class="input-container">
+                                            <input type="email" required>
+                                            <i class="ri-mail-fill input-icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="login-form-group">
+                                        <label>Contact Number</label>
+                                        <div class="input-container">
+                                            <input type="number" required>
+                                            <i class="ri-phone-fill input-icon"></i>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -118,7 +128,7 @@
                                     </div>
 
                                     <div class="login-form-group">
-                                        <label>Re-Enter Password</label>
+                                        <label>Confirm Password</label>
                                         <div class="input-container">
                                             <input type="password" required>
                                             <i class="ri-lock-password-fill input-icon"></i>
@@ -127,7 +137,7 @@
                                 </div>
 
                                 <div class="login-form-group">
-                                    <button type="submit" class="login-btn">REGISTER <i class="ri-arrow-right-double-fill animate-icon"></i></button>
+                                    <button type="submit" class="login-btn">SIGN UP <i class="ri-arrow-right-double-fill animate-icon"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -161,6 +171,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
