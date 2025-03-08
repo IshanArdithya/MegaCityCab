@@ -1377,6 +1377,23 @@ input {
     background: var(--white-color);
 }
 
+.error {
+    border-bottom: 1px solid #b3261e !important;
+}
+
+.error + .input-icon {
+    color: #b3261e !important;
+}
+
+.error-message {
+    color: #b3261e;
+    font-size: 0.9rem;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: none;
+}
+
 /* About Page */
 
 .about__hero {

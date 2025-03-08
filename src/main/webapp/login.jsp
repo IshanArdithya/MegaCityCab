@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="javax.servlet.http.HttpSession" %>
+<%
+
+    if (session != null && session.getAttribute("email") != null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,11 +30,11 @@
                     <div class="login">
                         <h2>Welcome To</h2>
                         <h1 class="brand-name">Mega City Cab</h1>
-                        <form>
+                        <form action="login" method="POST">
                             <div class="login-form-group">
                                 <label>Email</label>
                                 <div class="input-container">
-                                    <input type="email" required>
+                                    <input type="email" name="email" required>
                                     <i class="ri-mail-fill input-icon"></i>
                                 </div>
                             </div>
@@ -34,7 +42,7 @@
                             <div class="login-form-group">
                                 <label>Password</label>
                                 <div class="input-container">
-                                    <input type="password" required>
+                                    <input type="password" name="password" required>
                                     <i class="ri-lock-password-fill input-icon"></i>
                                 </div>
                             </div>
@@ -82,12 +90,12 @@
                         <div class="register">
                             <h2>Create Account</h2>
                             <h1 class="brand-name">Mega City Cab</h1>
-                            <form>
+                            <form action="register" method="POST">
                                 <div class="form-row">
                                     <div class="login-form-group">
                                         <label>First Name</label>
                                         <div class="input-container">
-                                            <input type="text" required>
+                                            <input type="text" name="firstName" required>
                                             <i class="ri-user-fill input-icon"></i>
                                         </div>
                                     </div>
@@ -95,7 +103,7 @@
                                     <div class="login-form-group">
                                         <label>Last Name</label>
                                         <div class="input-container">
-                                            <input type="text" required>
+                                            <input type="text" name="lastName" required>
                                             <i class="ri-user-fill input-icon"></i>
                                         </div>
                                     </div>
@@ -105,35 +113,38 @@
                                     <div class="login-form-group">
                                         <label>Email</label>
                                         <div class="input-container">
-                                            <input type="email" required>
+                                            <input type="email" name="email" required>
                                             <i class="ri-mail-fill input-icon"></i>
                                         </div>
                                     </div>
                                     <div class="login-form-group">
                                         <label>Contact Number</label>
                                         <div class="input-container">
-                                            <input type="number" required>
+                                            <input type="number" name="contactNumber" required>
                                             <i class="ri-phone-fill input-icon"></i>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="login-form-group">
-                                        <label>Password</label>
-                                        <div class="input-container">
-                                            <input type="password" required>
-                                            <i class="ri-lock-password-fill input-icon"></i>
+                                <div>
+                                    <div class="form-row">
+                                        <div class="login-form-group">
+                                            <label>Password</label>
+                                            <div class="input-container">
+                                                <input type="password" name="password" required>
+                                                <i class="ri-lock-password-fill input-icon"></i>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="login-form-group">
-                                        <label>Confirm Password</label>
-                                        <div class="input-container">
-                                            <input type="password" required>
-                                            <i class="ri-lock-password-fill input-icon"></i>
+                                        <div class="login-form-group">
+                                            <label>Confirm Password</label>
+                                            <div class="input-container">
+                                                <input type="password" name="confirmPassword" required>
+                                                <i class="ri-lock-password-fill input-icon"></i>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="error-message">Those passwords didn’t match. Try again.</div>
                                 </div>
 
                                 <div class="login-form-group">
@@ -192,5 +203,6 @@
                 });
             });
         </script>
+        <script src="js/userregister.js"></script>
     </body>
 </html>
