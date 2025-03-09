@@ -1,6 +1,7 @@
 <%
     String headerRequestURI = request.getRequestURI();
     boolean headerIsLoginPage = headerRequestURI.endsWith("/login.jsp");
+        boolean headerIsAdminLoginPage = headerRequestURI.endsWith("/adminlogin.jsp");
 
     String firstName = (String) session.getAttribute("firstName");
 %>
@@ -20,7 +21,7 @@
                     <li class="main-navigation main-nav-li"><a href="/MegaCityCab/index.jsp#get-started">Get Started</a></li>
                 </ul>
 
-                <% if (!headerIsLoginPage) {
+                <% if (!headerIsLoginPage && !headerIsAdminLoginPage) {
                         if (sessionEmail != null) {%>
                 <div class="avatar-container">
                     <a href="#" class="avatar-link">

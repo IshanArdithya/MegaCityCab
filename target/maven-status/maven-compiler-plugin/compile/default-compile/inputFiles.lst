@@ -3,4 +3,6 @@ D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab
 D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\auth\UserAuth.java
 D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\auth\LoginServlet.java
 D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\contact\ContactServlet.java
+D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\staffauth\StaffLoginServlet.java
+D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\staffauth\StaffLogoutServlet.java
 D:\Projects\NetBeansProjects\MegaCityCab\src\main\java\com\mycompany\megacitycab\auth\RegisterServlet.java

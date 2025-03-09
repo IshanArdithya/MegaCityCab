@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="javax.servlet.http.HttpSession" %>
+<%@include file="adminSessionAuth.jsp" %>
+<%
+    if (staffSession == null || staffSession.getAttribute("staff_email") == null) {
+        response.sendRedirect(request.getContextPath() + "/adminlogin.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +62,7 @@
                         <span class="icon"><i class="ri-home-fill"></i></span>
                         <h3>Manage</h3>
                     </a>
-                    <a href="admin">
+                    <a href="${pageContext.request.contextPath}/staff-logout">
                         <span class="icon"><i class="ri-logout-box-fill"></i></span>
                         <h3>Logout</h3>
                     </a>
@@ -84,7 +92,7 @@
                 </div>
 
 
-                <div class="recents">
+                <div class="section">
                     <h2>Pending Reservations</h2>
                     <table>
                         <thead>
