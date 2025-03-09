@@ -37,6 +37,34 @@ public class UserAuth {
         }
         return null;
     }
+    
+    public static String getLastName(String email) {
+        String query = "SELECT last_name FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("last_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getContactNumber(String email) {
+        String query = "SELECT contact_number FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("contact_number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static boolean emailExists(String email) {
         String query = "SELECT * FROM users WHERE email = ?";

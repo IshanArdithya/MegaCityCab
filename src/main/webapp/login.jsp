@@ -8,7 +8,7 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@include file="sessionCheck.jsp" %>
 
-<%    if (email != null) {
+<%    if (sessionEmail != null) {
         response.sendRedirect("index.jsp");
         return;
     }

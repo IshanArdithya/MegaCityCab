@@ -17,11 +17,11 @@
                     <li class="main-navigation"><a href="/MegaCityCab/about.jsp">About</a></li>
                     <li class="main-navigation"><a href="/MegaCityCab/bookings.jsp">Bookings</a></li>
                     <li class="nav-divider">|</li>
-                    <li class="main-navigation main-nav-li">Get Started</li>
+                    <li class="main-navigation main-nav-li"><a href="/MegaCityCab/index.jsp#get-started">Get Started</a></li>
                 </ul>
 
                 <% if (!headerIsLoginPage) {
-                        if (email != null) {%>
+                        if (sessionEmail != null) {%>
                 <div class="avatar-container">
                     <a href="#" class="avatar-link">
                         <img src="https://avatar.iran.liara.run/public" alt="User Avatar" class="avatar" id="avatar">

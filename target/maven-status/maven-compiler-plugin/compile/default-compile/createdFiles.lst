@@ -1,4 +1,5 @@
 com\mycompany\megacitycab\auth\RegisterServlet.class
+com\mycompany\megacitycab\contact\ContactServlet.class
 com\mycompany\megacitycab\auth\CheckDB.class
 com\mycompany\megacitycab\auth\LoginServlet.class
 com\mycompany\megacitycab\auth\DatabaseConnection.class

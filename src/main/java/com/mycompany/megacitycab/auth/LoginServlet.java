@@ -29,8 +29,16 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("email", email);
 
             String firstName = UserAuth.getFirstName(email);
+            String lastName = UserAuth.getLastName(email);
+            String contactNumber = UserAuth.getContactNumber(email);
             if (firstName != null) {
                 session.setAttribute("firstName", firstName);
+            }
+            if (lastName != null) {
+                session.setAttribute("lastName", lastName);
+            }
+            if (contactNumber != null) {
+                session.setAttribute("contactNumber", contactNumber);
             }
 
             response.sendRedirect("index.jsp");

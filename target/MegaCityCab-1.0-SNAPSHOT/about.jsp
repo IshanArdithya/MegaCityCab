@@ -6,6 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="sessionCheck.jsp" %>
+
+<%    String lastName = (String) session.getAttribute("lastName");
+    String email = (String) session.getAttribute("email");
+    String contactNumber = (String) session.getAttribute("contactNumber");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,6 +20,7 @@
         <title>About Us</title>
         <link rel="stylesheet" href="css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <%@ include file="components/header.jsp" %>
@@ -116,18 +123,17 @@
                     </div>
 
                     <div class="contact-form">
-                        <form class="contact-form-flex">
-
+                        <form class="contact-form-flex" action="contact" method="POST">
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <input type="text" required>
+                                        <input type="text" name="firstName" value="<%= firstName != null ? firstName : ""%>" required>
                                         <div class="labelline">First Name *</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <input type="text" required>
+                                        <input type="text" name="lastName" value="<%= lastName != null ? lastName : ""%>" required>
                                         <div class="labelline">Last Name *</div>
                                     </div>
                                 </div>
@@ -136,13 +142,13 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <input type="email" required>
+                                        <input type="email" name="email" value="<%= email != null ? email : ""%>" required>
                                         <div class="labelline">Email *</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <input type="number" required>
+                                        <input type="number" name="mobileNumber" value="<%= contactNumber != null ? contactNumber : ""%>" required>
                                         <div class="labelline">Mobile Number *</div>
                                     </div>
                                 </div>
@@ -151,7 +157,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <input type="text" required>
+                                        <input type="text" name="subject" required>
                                         <div class="labelline">Subject *</div>
                                     </div>
                                 </div>
@@ -160,7 +166,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="entryarea">
-                                        <textarea></textarea>
+                                        <textarea name="message" required></textarea>
                                         <div class="labelline">Message *</div>
                                     </div>
                                 </div>
@@ -173,7 +179,35 @@
             </section>
         </div>
 
-        <%@ include file="components/footer.jsp" %>
+                                        <%@ include file="components/footer.jsp" %>
 
+        <%
+            String success = request.getParameter("success");
+            String error = request.getParameter("error");
+        %>
+
+        <% if (success != null && success.equals("1")) { %>
+        <script>
+            Swal.fire({
+                title: "Success!",
+                text: "Your message has been sent successfully!",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        </script>
+        <% } %>
+
+        <% if (error != null && error.equals("1")) { %>
+        <script>
+            Swal.fire({
+                title: "Error!",
+                text: "Failed to send your message. Please try again.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        </script>
+        <% }%>
+
+        <script src="js/contactus.js"></script>
     </body>
 </html>
