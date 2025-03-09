@@ -27,6 +27,12 @@ public class LoginServlet extends HttpServlet {
         if (UserAuth.login(email, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
+
+            String firstName = UserAuth.getFirstName(email);
+            if (firstName != null) {
+                session.setAttribute("firstName", firstName);
+            }
+
             response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("login.jsp?error=1");
