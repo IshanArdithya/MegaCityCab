@@ -22,7 +22,7 @@
                     <span class="icon"><i class="ri-booklet-fill"></i></span>
                     <h3>Inquiries</h3>
                 </a>
-                <a href="admin">
+                <a href="/MegaCityCab/admin/feedback.jsp">
                     <span class="icon"><i class="ri-feedback-fill"></i></span>
                     <h3>Feedback</h3>
                 </a>

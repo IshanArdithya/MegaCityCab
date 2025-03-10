@@ -77,8 +77,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="section recent-users">
-                        <h2>Recent Customers</h2>
+                            <div class="section section2">
+                                <h2>Recent Customers</h2>
                         <ul>
                             <% for (User user : recentUsers) {
                                     String formattedDate;

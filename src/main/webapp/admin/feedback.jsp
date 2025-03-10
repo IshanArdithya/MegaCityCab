@@ -1,6 +1,6 @@
 <%-- 
-    Document   : inquiries
-    Created on : Mar 10, 2025, 4:18:21 PM
+    Document   : feedback
+    Created on : Mar 10, 2025, 4:53:40 PM
     Author     : IshanPC
 --%>
 
@@ -27,7 +27,7 @@
 %>
 
 <%
-    String pageTitle = "Inquiries"; //header.jsp
+    String pageTitle = "Feedback"; //header.jsp
 %>
 
 <!DOCTYPE html>
@@ -53,46 +53,27 @@
                 <%@include file="components/header.jsp" %>
                 <div class="section-container">
                     <div class="section">
-                        <h2>All Inquiries</h2>
+                        <h2>All Feedback</h2>
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Feedback ID</th>
+                                    <th>Booking ID</th>
                                     <th>Customer ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Registered Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (Contact contact : contacts) {%>
-                                <tr>
-                                    <td><%= contact.getId()%></td>
-                                    <td><%= contact.getFirstName()%></td>
-                                    <td><%= contact.getLastName()%></td>
-                                    <td><%= contact.getEmail()%></td>
-                                    <td><%= contact.getCreatedAt()%></td>
-                                </tr>
-                                <% }%>
+
                             </tbody>
                         </table>
                     </div>
-                            <div class="section section2">
-                                <h2>Recent Inquiries</h2>
+                    <div class="section section2">
+                        <h2>Recent Feedback</h2>
                         <ul>
-                            <% for (Contact contact : recentContacts) {
-                                    String formattedDate;
-                                    if (contact.getCreatedAt().toLocalDateTime().toLocalDate().equals(today.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
-                                        formattedDate = todayFormat.format(contact.getCreatedAt());
-                                    } else {
-                                        formattedDate = dateFormat.format(contact.getCreatedAt());
-                                    }
-                            %>
                             <li>
-                                <span class="name"><%= contact.getFirstName()%> <%= contact.getLastName()%></span>
-                                <span class="time"><%= formattedDate%></span>
+                                <span class="name"></span>
+                                <span class="time"></span>
                             </li>
-                            <% }%>
                         </ul>
                     </div>
                 </div>

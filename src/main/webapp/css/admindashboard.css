@@ -15,7 +15,7 @@
     --color-dark: #363949;
     --color-light: rgba(132, 139, 200, 0.18);
     --color-dark-variant: #677483;
-    --color-background: #f6f6f9;
+    --color-background: #f9f8fb;
 
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -66,7 +66,7 @@ h2 {
 
 h3 {
     font-weight: 500;
-    font-size: 0.87rem;
+    font-size: 0.91rem;
 }
 
 small {
@@ -169,8 +169,8 @@ aside .sidebar a {
     gap: 1rem;
     padding-left: 2rem;
     text-decoration: none;
-    transition: all 0.3s ease;
     border-radius: 25px;
+    transition: all 0.2s ease;
 }
 
 aside .sidebar a span {
@@ -200,11 +200,6 @@ aside .aside-logout:hover {
     color: var(--color-primary);
     background-color: rgba(135, 140, 189, 0.2);
     border-radius: 25px;
-}
-
-aside .aside-links a:hover span,
-aside .aside-logout:hover span {
-    margin-left: 0.6rem;
 }
 
 aside .sidebar .message-count {
@@ -344,7 +339,7 @@ main .section table tbody tr:last-child td {
     margin: 20px 0;
 }
 
-.recent-users {
+.section2 {
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
@@ -352,13 +347,13 @@ main .section table tbody tr:last-child td {
     max-width: 350px;
 }
 
-.recent-users ul {
+.section2 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.recent-users li {
+.section2 li {
     display: flex;
     justify-content: space-between;
     padding: 0.8rem 1rem;
@@ -369,16 +364,16 @@ main .section table tbody tr:last-child td {
     transition: background 0.3s ease;
 }
 
-.recent-users li:hover {
+.section2 li:hover {
     background: rgba(132, 139, 200, 0.3);
 }
 
-.recent-users .name {
+.section2 .name {
     font-weight: 600;
     color: var(--color-dark);
 }
 
-.recent-users .time {
+.section2 .time {
     color: var(--color-info-dark);
     font-size: 0.85rem;
 }
