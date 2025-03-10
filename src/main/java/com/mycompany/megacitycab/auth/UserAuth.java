@@ -37,7 +37,7 @@ public class UserAuth {
         }
         return null;
     }
-    
+
     public static String getLastName(String email) {
         String query = "SELECT last_name FROM users WHERE email = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {

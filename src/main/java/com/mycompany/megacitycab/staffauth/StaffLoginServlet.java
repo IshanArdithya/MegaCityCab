@@ -26,6 +26,11 @@ public class StaffLoginServlet extends HttpServlet {
                 session.setAttribute("staffFirstName", staffFirstName);
             }
             
+            String staffRole = StaffAuth.getRole(email);
+            if (staffRole != null) {
+                session.setAttribute("staffRole", staffRole);
+            }
+            
             response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
         } else {
             response.sendRedirect(request.getContextPath() + "/adminlogin.jsp?error=1");

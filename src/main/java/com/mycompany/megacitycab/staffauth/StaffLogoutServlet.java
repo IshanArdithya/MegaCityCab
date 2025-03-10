@@ -18,6 +18,7 @@ public class StaffLogoutServlet extends HttpServlet {
         if (session != null) {
             session.removeAttribute("staff_email");
             session.removeAttribute("staffFirstName");
+            session.removeAttribute("staffRole");
         }
         response.sendRedirect(request.getContextPath() + "/adminlogin.jsp");
     }

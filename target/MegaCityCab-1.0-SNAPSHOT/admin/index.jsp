@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.HttpSession" %>
+
 <%@include file="adminSessionAuth.jsp" %>
 <%    if (staffSession == null || staffSession.getAttribute("staff_email") == null) {
         response.sendRedirect(request.getContextPath() + "/adminlogin.jsp");

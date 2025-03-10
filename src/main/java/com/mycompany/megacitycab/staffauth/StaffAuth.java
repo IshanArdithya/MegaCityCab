@@ -38,4 +38,18 @@ public class StaffAuth {
         }
         return null;
     }
+    
+    public static String getRole(String email) {
+        String query = "SELECT role FROM staff_users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("role");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

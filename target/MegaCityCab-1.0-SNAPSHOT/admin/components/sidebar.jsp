@@ -14,9 +14,9 @@
                     <span class="icon"><i class="ri-user-fill"></i></span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="admin">
+                <a href="/MegaCityCab/admin/customers.jsp">
                     <span class="icon"><i class="ri-home-fill"></i></span>
-                    <h3>Home</h3>
+                    <h3>Customers</h3>
                 </a>
                 <a href="admin">
                     <span class="icon"><i class="ri-home-fill"></i></span>

@@ -1,6 +1,8 @@
 com\mycompany\megacitycab\staffauth\StaffAuth.class
 com\mycompany\megacitycab\auth\UserLogoutServlet.class
 com\mycompany\megacitycab\auth\CheckDB.class
+com\mycompany\megacitycab\dao\UserDAO.class
+com\mycompany\megacitycab\model\User.class
 com\mycompany\megacitycab\auth\DatabaseConnection.class
 com\mycompany\megacitycab\auth\RegisterServlet.class
 com\mycompany\megacitycab\contact\ContactServlet.class
