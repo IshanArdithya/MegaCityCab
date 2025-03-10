@@ -1,7 +1,3 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
 /* 
     Created on : Mar 8, 2025, 8:11:46 PM
     Author     : IshanPC
@@ -24,26 +20,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 1.2rem;
-
   --card-padding: 1.8rem;
-  --padding-1: 1.2rem;
 
   --box-shadow: 0 2rem 3rem var(--color-light);
-
-  --main-theme-color: #f38122;
-  --pg-main-color1: #f8f9fa;
-  --pg-main-color2: #fff;
-  --navbar-color: #cfcfcf;
-  --footer-p-color: #ffffffa7;
-  --button-hover-color: #e96300;
-  --about-color: #a56027c8;
-
-  --white-color: hsl(0, 0%, 100%);
-  --black-color: hsl(0, 0%, 0%);
-  --body-font: "Poppins", sans-serif;
-  --h1-font-size: 2.3rem;
-  --normal-font-size: 1.2rem;
-  --small-font-size: .950rem;
 }
 
 * {
@@ -102,10 +81,6 @@ b {
   color: var(--color-dark);
 }
 
-.text-muted {
-  color: var(--color-info-dark);
-}
-
 .primary {
   color: var(--color-primary);
 }
@@ -133,7 +108,6 @@ b {
 
 aside {
     display: flex;
-    flex-direction: column;
     width: 15rem;
     height: 100vh;
     background-color: var(--color-white);
@@ -155,12 +129,19 @@ aside .toggle {
 
 aside .toggle .logo {
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 aside .toggle .logo img {
-    width: 2rem;
-    height: 2rem;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+}
+
+aside .toggle .logo a {
+    padding-left: 0;
 }
 
 aside .toggle .close {
@@ -171,6 +152,7 @@ aside .toggle .close {
 aside .sidebar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     padding: 1.5rem;
 }
@@ -188,6 +170,7 @@ aside .sidebar a {
     padding-left: 2rem;
     text-decoration: none;
     transition: all 0.3s ease;
+    border-radius: 25px;
 }
 
 aside .sidebar a span {
@@ -195,17 +178,9 @@ aside .sidebar a span {
     transition: all 0.3s ease;
 }
 
-aside .sidebar a:last-child {
-    position: absolute;
-    bottom: 0rem;
-    width: 100%;
-}
-
 aside .sidebar a.active {
-    width: 100%;
+    background-color: rgba(135, 140, 189, 0.3);
     color: var(--color-primary);
-    background-color: var(--color-light);
-    margin-left: 0;
 }
 
 aside .sidebar a.active::before {
@@ -220,11 +195,15 @@ aside .sidebar a.active span {
     margin-left: calc(1rem - 3px);
 }
 
-aside .sidebar a:hover {
+aside .aside-links a:hover,
+aside .aside-logout:hover {
     color: var(--color-primary);
+    background-color: rgba(135, 140, 189, 0.2);
+    border-radius: 25px;
 }
 
-aside .sidebar a:hover span {
+aside .aside-links a:hover span,
+aside .aside-logout:hover span {
     margin-left: 0.6rem;
 }
 

@@ -1,11 +1,6 @@
 package com.mycompany.megacitycab.staffauth;
 
-import com.mycompany.megacitycab.auth.DatabaseConnection;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,26 +17,18 @@ public class StaffLoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (authenticateStaff(email, password)) {
+        if (StaffAuth.authenticateStaff(email, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("staff_email", email);
+            
+            String staffFirstName = StaffAuth.getFirstName(email);
+            if (staffFirstName != null) {
+                session.setAttribute("staffFirstName", staffFirstName);
+            }
+            
             response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
         } else {
-            response.sendRedirect(request.getContextPath() + "/staff-login.jsp?error=1");
-        }
-    }
-
-    private boolean authenticateStaff(String email, String password) {
-        String query = "SELECT * FROM staff_users WHERE email = ? AND password = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, email);
-            stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            response.sendRedirect(request.getContextPath() + "/adminlogin.jsp?error=1");
         }
     }
 }

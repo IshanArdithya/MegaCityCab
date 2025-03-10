@@ -36,8 +36,8 @@
                             <i class="ri-user-line"></i>
                             <span>My Profile</span>
                         </a>
-                        <a href="/MegaCityCab/logout.jsp" class="dropdown-item">
-                            <i class="ri-logout-box-r-line"></i>
+                            <a href="${pageContext.request.contextPath}/user-logout" class="dropdown-item">
+                                <i class="ri-logout-box-r-line"></i>
                             <span>Logout</span>
                         </a>
                     </div>

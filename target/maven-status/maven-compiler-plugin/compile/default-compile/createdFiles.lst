@@ -1,3 +1,5 @@
+com\mycompany\megacitycab\staffauth\StaffAuth.class
+com\mycompany\megacitycab\auth\UserLogoutServlet.class
 com\mycompany\megacitycab\auth\CheckDB.class
 com\mycompany\megacitycab\auth\DatabaseConnection.class
 com\mycompany\megacitycab\auth\RegisterServlet.class

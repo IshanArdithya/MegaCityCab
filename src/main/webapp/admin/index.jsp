@@ -7,12 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@include file="adminSessionAuth.jsp" %>
-<%
-    if (staffSession == null || staffSession.getAttribute("staff_email") == null) {
+<%    if (staffSession == null || staffSession.getAttribute("staff_email") == null) {
         response.sendRedirect(request.getContextPath() + "/adminlogin.jsp");
         return;
     }
 %>
+
+<%
+    String pageTitle = "Index Page"; //header.jsp
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,66 +38,11 @@
     <body>
 
         <div class="container">
-            <aside>
-                <div class="sidebar">
-                    <div class="toggle">
-                        <div class="logo">
-                            <h2>Mega City<span class="danger"> Cab</span></h2>
-                        </div>
-                    </div>
-                    <div class="section-divider"></div>
-                    <a href="admin">
-                        <span class="icon"><i class="ri-user-fill"></i></span>
-                        <h3>Dashboard</h3>
-                    </a>
-                    <a href="admin">
-                        <span class="icon"><i class="ri-home-fill"></i></span>
-                        <h3>Home</h3>
-                    </a>
-                    <a href="admin">
-                        <span class="icon"><i class="ri-home-fill"></i></span>
-                        <h3>Bookings</h3>
-                    </a>
-                    <a href="admin">
-                        <span class="icon"><i class="ri-home-fill"></i></span>
-                        <h3>Customers</h3>
-                    </a>
-                    <a href="manage">
-                        <span class="icon"><i class="ri-home-fill"></i></span>
-                        <h3>Manage</h3>
-                    </a>
-                    <a href="${pageContext.request.contextPath}/staff-logout">
-                        <span class="icon"><i class="ri-logout-box-fill"></i></span>
-                        <h3>Logout</h3>
-                    </a>
-                </div>
-            </aside>
-
+            <%@include file="components/sidebar.jsp" %>
             <main>
-                <div class="header">
-                    <div>
-                        <div class="breadcrumb">
-                            <span>/</span>
-                            <a href="#">Index</a>
-                        </div>
-                        <div class="page-title">
-                            Index Page
-                        </div>
-                    </div>
-                    <div class="wrapper">
-                        <div class="user-info">
-                            <h2>Hi, Admin</h2>
-                            <small>Admin</small>
-                        </div>
-                        <div class="avatar">
-                            <img src="https://avatar.iran.liara.run/public" alt="Avatar">
-                        </div>
-                    </div>
-                </div>
-
-
+                <%@include file="components/header.jsp" %>
                 <div class="section">
-                    <h2>Pending Reservations</h2>
+                    <h2>Pending</h2>
                     <table>
                         <thead>
                             <tr>
