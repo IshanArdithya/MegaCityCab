@@ -10,25 +10,21 @@
             </div>
             <div class="section-divider"></div>
             <div class="aside-links">
-                <a href="admin">
-                    <span class="icon"><i class="ri-user-fill"></i></span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="/MegaCityCab/admin/customers.jsp">
-                    <span class="icon"><i class="ri-home-fill"></i></span>
-                    <h3>Customers</h3>
-                </a>
-                <a href="admin">
-                    <span class="icon"><i class="ri-home-fill"></i></span>
+                <a href="/MegaCityCab/admin/bookings.jsp">
+                    <span class="icon"><i class="ri-taxi-fill"></i></span>
                     <h3>Bookings</h3>
                 </a>
-                <a href="admin">
-                    <span class="icon"><i class="ri-home-fill"></i></span>
+                <a href="/MegaCityCab/admin/customers.jsp">
+                    <span class="icon"><i class="ri-group-fill"></i></span>
                     <h3>Customers</h3>
                 </a>
-                <a href="manage">
-                    <span class="icon"><i class="ri-home-fill"></i></span>
-                    <h3>Manage</h3>
+                <a href="/MegaCityCab/admin/inquiries.jsp">
+                    <span class="icon"><i class="ri-booklet-fill"></i></span>
+                    <h3>Inquiries</h3>
+                </a>
+                <a href="admin">
+                    <span class="icon"><i class="ri-feedback-fill"></i></span>
+                    <h3>Feedback</h3>
                 </a>
             </div>
         </div>
