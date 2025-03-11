@@ -35,7 +35,26 @@
                 <%@include file="components/header.jsp" %>
                 <div class="section-container">
                     <div class="section">
-                        <h2>Successful Bookings</h2>
+                        <h2>Active Bookings</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Booking Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section">
+                        <h2>Completed Bookings</h2>
                         <table>
                             <thead>
                                 <tr>
@@ -50,7 +69,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
 
             </main>

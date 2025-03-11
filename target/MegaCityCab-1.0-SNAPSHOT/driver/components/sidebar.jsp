@@ -14,9 +14,9 @@
                     <span class="icon"><i class="ri-dashboard-fill"></i></span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="/MegaCityCab/driver/bookings.jsp">
-                    <span class="icon"><i class="ri-taxi-fill"></i></span>
-                    <h3>Customers</h3>
+                <a href="/MegaCityCab/driver/settings.jsp">
+                    <span class="icon"><i class="ri-settings-3-fill"></i></span>
+                    <h3>Settings</h3>
                 </a>
             </div>
         </div>
