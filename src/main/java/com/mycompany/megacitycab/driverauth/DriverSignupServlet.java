@@ -18,6 +18,8 @@ public class DriverSignupServlet extends HttpServlet {
         String lastName = request.getParameter("registerLastName");
         String email = request.getParameter("registerEmail");
         String contactNumber = request.getParameter("registerContactNumber");
+        String homeAddress = request.getParameter("registerHomeAddress");
+        String nic = request.getParameter("registerNIC");
         String password = request.getParameter("registerPassword");
         String confirmPassword = request.getParameter("registerConfirmPassword");
 
@@ -31,7 +33,7 @@ public class DriverSignupServlet extends HttpServlet {
             return;
         }
 
-        if (DriverAuth.registerDriver(firstName, lastName, email, contactNumber, password)) {
+        if (DriverAuth.registerDriver(firstName, lastName, email, contactNumber, homeAddress, nic, password)) {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?success=1");
         } else {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?error=1");

@@ -15,7 +15,9 @@
     <body>
         <section class="nav-a-dark profile__customer">
             <%@ include file="../components/header.jsp" %>
+            <div class="profile__contents-divider"></div>
             <div class="container">
+
                 <div class="profile__container">
                     <div class="profile__info">
                         <div class="profile__info-main">
@@ -40,9 +42,39 @@
                             <div class="profile__information_section">
                                 <div class="profile__information">
                                     <div class="profile__information-icon">
+                                        <i class="ri-mail-fill"></i>
+                                    </div>
+                                    <div class="profile__information-wrap">
+                                        <span class="information-title">Email Address</span>
+                                        <span class="information-context">ardithya123@gmail.com</span>
+                                    </div>
+                                </div>
+                                <div class="profile__information">
+                                    <div class="profile__information-icon">
+                                        <i class="ri-home-4-fill"></i>
+                                    </div>
+                                    <div class="profile__information-wrap">
+                                        <span class="information-title">Address</span>
+                                        <span class="information-context">12/10, asdadas, Colombo 05</span>
+                                    </div>
+                                </div>
+                                <div class="profile__information">
+                                    <div class="profile__information-icon">
+                                        <i class="ri-phone-fill"></i>
+                                    </div>
+                                    <div class="profile__information-wrap">
+                                        <span class="information-title">Contact Number</span>
+                                        <span class="information-context">0112471242</span>
+                                    </div>
+                                </div>
+                                <div class="profile__information">
+                                    <div class="profile__information-icon">
                                         <i class="ri-time-fill"></i>
                                     </div>
-                                    <p>Joined January 2025</p>
+                                    <div class="profile__information-wrap">
+                                        <span class="information-title">Joined</span>
+                                        <span class="information-context">January 2025</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

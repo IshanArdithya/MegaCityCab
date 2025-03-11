@@ -17,6 +17,8 @@ public class RegisterServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String contactNumber = request.getParameter("contactNumber");
+        String homeAddress = request.getParameter("homeAddress");
+        String nic = request.getParameter("nic");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
         
@@ -25,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        if (UserAuth.register(firstName, lastName, email, contactNumber, password)) {
+        if (UserAuth.register(firstName, lastName, email, contactNumber, homeAddress, nic, password)) {
             response.sendRedirect("login.jsp?registersuccess=1");
         } else {
             response.sendRedirect("login.jsp?registererror=1");

@@ -19,7 +19,7 @@
     <head>
         <title>Sign-In | Mega City Cab</title>
         <link rel="stylesheet" href="css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     </head>
     <body>
         <section id="loginPage">
@@ -89,7 +89,7 @@
                         <div class="register-content">
                             <div class="register">
                                 <h2>Create Account</h2>
-                                <h1 class="brand-name">Mega City Cab</h1>
+                                <h1 class="brand-name brand-name-register">Mega City Cab</h1>
                                 <form action="register" method="POST">
                                     <div class="form-row">
                                         <div class="login-form-group">
@@ -122,6 +122,23 @@
                                             <div class="input-container">
                                                 <input type="number" name="contactNumber" required>
                                                 <i class="ri-phone-fill input-icon"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="login-form-group">
+                                            <label>Home Address</label>
+                                            <div class="input-container">
+                                                <input type="text" name="homeAddress" required>
+                                                <i class="ri-home-4-fill input-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="login-form-group">
+                                            <label>NIC</label>
+                                            <div class="input-container">
+                                                <input type="text" name="nic" required>
+                                                <i class="ri-id-card-fill input-icon"></i>
                                             </div>
                                         </div>
                                     </div>

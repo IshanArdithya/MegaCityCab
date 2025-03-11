@@ -30,6 +30,10 @@
                 <h3>Help</h3>
                 <a href="#">How to use</a>
                 <a href="/MegaCityCab/index.jsp#faq-section">FAQs</a>
+                <div class="footer-auth">
+                    <a href="/MegaCityCab/adminlogin.jsp">Are you an admin?</a>
+                    <a href="/MegaCityCab/driverlogin.jsp">Are you a driver?</a>
+                </div>
             </div>
         </div>
     </div>

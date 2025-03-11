@@ -49,6 +49,10 @@
                                     <input type="tel" name="registerContactNumber" placeholder="Contact Number" required>
                                 </div>
                                 <div class="driver__input-row">
+                                    <input type="text" name="registerHomeAddress" placeholder="Home Address" required>
+                                    <input type="text" name="registerNIC" placeholder="NIC" required>
+                                </div>
+                                <div class="driver__input-row">
                                     <input type="password" name="registerPassword" placeholder="Enter Password" required>
                                     <input type="password" name="registerConfirmPassword" placeholder="Confirm Password" required>
                                 </div>

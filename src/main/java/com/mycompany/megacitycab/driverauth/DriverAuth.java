@@ -48,14 +48,16 @@ public class DriverAuth {
         }
     }
 
-    public static boolean registerDriver(String firstName, String lastName, String email, String contactNumber, String password) {
-        String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, password) VALUES (?, ?, ?, ?, ?)";
+    public static boolean registerDriver(String firstName, String lastName, String email, String contactNumber, String homeAddress, String nic, String password) {
+        String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, home_address, nic, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, firstName);
             stmt.setString(2, lastName);
             stmt.setString(3, email);
             stmt.setString(4, contactNumber);
-            stmt.setString(5, password);
+            stmt.setString(5, homeAddress);
+            stmt.setString(6, nic);
+            stmt.setString(7, password);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
