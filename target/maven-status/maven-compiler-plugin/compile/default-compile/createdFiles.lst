@@ -11,6 +11,7 @@ com\mycompany\megacitycab\auth\CheckDB.class
 com\mycompany\megacitycab\dao\UserDAO.class
 com\mycompany\megacitycab\model\User.class
 com\mycompany\megacitycab\dao\ContactDAO.class
+com\mycompany\megacitycab\driverauth\DriverAuth.class
 com\mycompany\megacitycab\contact\ContactServlet.class
 com\mycompany\megacitycab\auth\UserAuth.class
 com\mycompany\megacitycab\staffauth\StaffLoginServlet.class

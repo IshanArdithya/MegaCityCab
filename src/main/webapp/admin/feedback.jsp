@@ -1,9 +1,3 @@
-<%-- 
-    Document   : feedback
-    Created on : Mar 10, 2025, 4:53:40 PM
-    Author     : IshanPC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="com.mycompany.megacitycab.dao.ContactDAO" %>

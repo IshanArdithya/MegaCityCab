@@ -18,6 +18,7 @@ public class DriverLogoutServlet extends HttpServlet {
         if (session != null) {
 //            session.invalidate();
             session.removeAttribute("driver_email");
+            session.removeAttribute("driver_firstName");
         }
         response.sendRedirect(request.getContextPath() + "/driverlogin.jsp");
     }

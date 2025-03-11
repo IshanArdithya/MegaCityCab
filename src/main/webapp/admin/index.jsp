@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Mar 8, 2025, 8:08:17 PM
-    Author     : IshanPC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 
