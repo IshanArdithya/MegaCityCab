@@ -1,9 +1,3 @@
-<%-- 
-    Document   : sessions_checker
-    Created on : Mar 9, 2025, 12:58:32 AM
-    Author     : IshanPC
---%>
-
 <%@ page import="java.util.Enumeration" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

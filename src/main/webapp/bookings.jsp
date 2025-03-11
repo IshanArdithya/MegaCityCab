@@ -1,9 +1,3 @@
-<%-- 
-    Document   : booking
-    Created on : Mar 4, 2025, 9:44:39 PM
-    Author     : IshanPC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="sessionCheck.jsp" %>
 <!DOCTYPE html>

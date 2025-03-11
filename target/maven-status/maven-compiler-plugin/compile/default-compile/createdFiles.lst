@@ -1,5 +1,8 @@
+com\mycompany\megacitycab\driverauth\DriverSignupServlet.class
+com\mycompany\megacitycab\driverauth\DriverLoginServlet.class
 com\mycompany\megacitycab\model\Contact.class
 com\mycompany\megacitycab\auth\DatabaseConnection.class
+com\mycompany\megacitycab\driverauth\DriverLogoutServlet.class
 com\mycompany\megacitycab\auth\RegisterServlet.class
 com\mycompany\megacitycab\auth\LoginServlet.class
 com\mycompany\megacitycab\staffauth\StaffAuth.class

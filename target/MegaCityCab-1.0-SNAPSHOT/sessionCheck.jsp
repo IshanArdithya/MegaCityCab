@@ -1,9 +1,3 @@
-<%-- 
-    Document   : sessionCheck
-    Created on : Mar 9, 2025, 3:23:05 PM
-    Author     : IshanPC
---%>
-
 <%@page import="javax.servlet.http.HttpSession" %>
 <%
     HttpSession userSession = request.getSession(false);
