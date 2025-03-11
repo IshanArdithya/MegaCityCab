@@ -32,7 +32,7 @@
                             <img src="https://avatar.iran.liara.run/public" alt="User Avatar" class="dropdown-avatar">
                             <div class="dropdown-greeting">Hi, <%= firstName != null ? firstName : "User"%></div>
                         </div>
-                        <a href="/MegaCityCab/profile.jsp" class="dropdown-item">
+                        <a href="/MegaCityCab/user/profile.jsp" class="dropdown-item">
                             <i class="ri-user-line"></i>
                             <span>My Profile</span>
                         </a>
