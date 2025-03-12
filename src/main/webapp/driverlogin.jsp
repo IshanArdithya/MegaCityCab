@@ -13,6 +13,7 @@
             href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
             rel="stylesheet"
             />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <div class="nav-a-dark">
@@ -39,30 +40,67 @@
                         <div class="driver__login-box" id="signupBox" style="display: none;">
                             <h2>Driver Sign Up</h2>
                             <p>Fill in your details to create an account</p>
+                            <div class="progress-bar progress-bar-top">
+                                <div class="progress-step" data-step="1">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="progress-line"></div>
+                                <div class="progress-step" data-step="2">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="progress-line"></div>
+                                <div class="progress-step" data-step="3">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="progress-line"></div>
+                                <div class="progress-step" data-step="4">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <span>Step 1</span>
+                                <span>Step 2</span>
+                                <span>Step 3</span>
+                                <span>Step 4</span>
+                            </div>
                             <form action="${pageContext.request.contextPath}/driver-signup" method="POST">
-                                <div class="driver__input-row">
-                                    <input type="text" name="registerFirstName" placeholder="First Name" required>
-                                    <input type="text" name="registerLastName" placeholder="Last Name" required>
-                                </div>
-                                <div class="driver__input-row">
-                                    <input type="email" name="registerEmail" placeholder="Enter Email" required>
-                                    <input type="tel" name="registerContactNumber" placeholder="Contact Number" required>
-                                </div>
-                                <div class="driver__input-row">
-                                    <input type="text" name="registerHomeAddress" placeholder="Home Address" required>
-                                    <input type="text" name="registerNIC" placeholder="NIC" required>
-                                </div>
-                                <div class="driver__input-row">
-                                    <input type="password" name="registerPassword" placeholder="Enter Password" required>
-                                    <input type="password" name="registerConfirmPassword" placeholder="Confirm Password" required>
-                                </div>
+
+                            <div class="form-step" data-step="1">
+                                <input type="text" name="registerFirstName" placeholder="First Name" required>
+                                <input type="text" name="registerLastName" placeholder="Last Name" required>
+                                <input type="text" name="registerGender" placeholder="Gender" required>
+                                <button type="button" onclick="nextStep()">Next</button>
+                            </div>
+
+                            <div class="form-step" data-step="2">
+                                <input type="tel" name="registerContactNumber" placeholder="Contact Number" required>
+                                <input type="text" name="registerHomeAddress" placeholder="Home Address" required>
+                                <input type="text" name="registerNIC" placeholder="NIC" required>
+                                <button type="button" onclick="prevStep()">Back</button>
+                                <button type="button" onclick="nextStep()">Next</button>
+                            </div>
+
+                            <div class="form-step" data-step="3">
+                                <input type="text" name="registerVehicleName" placeholder="Vehicle Name" required>
+                                <input type="number" name="registerPassengerCount" placeholder="Passenger Count" required>
+                                <input type="text" name="registerVehicleNumber" placeholder="Vehicle Registration Number" required>
+                                <button type="button" onclick="prevStep()">Back</button>
+                                <button type="button" onclick="nextStep()">Next</button>
+                            </div>
+
+                            <div class="form-step" data-step="4">
+                                <input type="email" name="registerEmail" placeholder="Email" required>
+                                <input type="password" name="registerPassword" placeholder="Password" required>
+                                <input type="password" name="registerConfirmPassword" placeholder="Password" required>
                                 <div class="error-message driver-register__error2">Those passwords didn’t match. Try again.</div>
+                                <button type="button" onclick="prevStep()">Back</button>
                                 <button type="submit">Sign Up</button>
-                            </form>
-                            <p class="driver__register-text">
-                                Already have an account? <a href="#" onclick="showLogin()">Sign In</a>
-                            </p>
-                        </div>
+                            </div>
+                        </form>
+                        <p class="driver__register-text">
+                            Already have an account? <a href="#" onclick="showLogin()">Sign In</a>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="login-footer-text">
@@ -98,7 +136,54 @@
 //                    out.println("<p style='color: red;'>Passwords do not match. Please try again.</p>");
 //                }
 //            }
-        %>
+%>
+
+        <script>
+            let currentStep = 1;
+            const formSteps = document.querySelectorAll('.form-step');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            const progressLines = document.querySelectorAll('.progress-line');
+
+            function showStep(step) {
+                formSteps.forEach((formStep, index) => {
+                    formStep.style.display = index + 1 === step ? 'block' : 'none';
+                });
+
+                progressSteps.forEach((progressStep, index) => {
+                    if (index + 1 <= step) {
+                        progressStep.classList.add('active');
+                    } else {
+                        progressStep.classList.remove('active');
+                    }
+                });
+
+                progressLines.forEach((progressLine, index) => {
+                    if (index + 1 < step) {
+                        progressLine.classList.add('active');
+                    } else {
+                        progressLine.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextStep() {
+                if (currentStep < 4) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            }
+
+            function prevStep() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            }
+
+            showStep(currentStep);
+        </script>
+
+
 
         <script>
             function showSignup() {
@@ -110,8 +195,8 @@
                 document.getElementById("signupBox").style.display = "none";
                 document.getElementById("loginBox").style.display = "block";
             }
-
         </script>
+        <script src="js/login-popup.js"></script>
         <script src="js/driverregister.js"></script>
     </body>
 </html>

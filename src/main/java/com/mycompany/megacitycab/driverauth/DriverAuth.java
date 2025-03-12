@@ -48,8 +48,8 @@ public class DriverAuth {
         }
     }
 
-    public static boolean registerDriver(String firstName, String lastName, String email, String contactNumber, String homeAddress, String nic, String password) {
-        String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, home_address, nic, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static boolean registerDriver(String firstName, String lastName, String email, String contactNumber, String homeAddress, String nic, String password, String gender, String vehicleName, String passengerCount, String vehicleNumber) {
+        String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, home_address, nic, password, gender, vehicle_name, passenger_count, vehicle_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, firstName);
             stmt.setString(2, lastName);
@@ -58,6 +58,10 @@ public class DriverAuth {
             stmt.setString(5, homeAddress);
             stmt.setString(6, nic);
             stmt.setString(7, password);
+            stmt.setString(8, gender);
+            stmt.setString(9, vehicleName);
+            stmt.setString(10, passengerCount);
+            stmt.setString(11, vehicleNumber);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {

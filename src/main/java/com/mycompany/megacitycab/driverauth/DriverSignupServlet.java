@@ -22,21 +22,25 @@ public class DriverSignupServlet extends HttpServlet {
         String nic = request.getParameter("registerNIC");
         String password = request.getParameter("registerPassword");
         String confirmPassword = request.getParameter("registerConfirmPassword");
+        String gender = request.getParameter("registerGender");
+        String vehicleName = request.getParameter("registerVehicleName");
+        String passengerCount = request.getParameter("registerPassengerCount");
+        String vehicleNumber = request.getParameter("registerVehicleNumber");
 
         if (!password.equals(confirmPassword)) {
-            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?error=2");
+            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=2");
             return;
         }
         
         if (DriverAuth.emailExists(email)) {
-            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?error=3");
+            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=3");
             return;
         }
 
-        if (DriverAuth.registerDriver(firstName, lastName, email, contactNumber, homeAddress, nic, password)) {
-            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?success=1");
+        if (DriverAuth.registerDriver(firstName, lastName, email, contactNumber, homeAddress, nic, password, gender, vehicleName, passengerCount, vehicleNumber)) {
+            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registersuccess=1");
         } else {
-            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?error=1");
+            response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=1");
         }
     }
 }

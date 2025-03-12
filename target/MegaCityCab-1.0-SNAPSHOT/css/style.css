@@ -1968,8 +1968,75 @@ input {
 }
 
 .driver-register__error2 {
-    margin-top: -20px;
+    margin-top: -8px;
     margin-bottom: 0;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.7rem 0 2rem 0;
+    position: relative;
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.progress-step .circle {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.progress-step.active {
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+.progress-step.active .circle {
+    background-color: white;
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background-color: #ccc;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.progress-line.active {
+    background-color: var(--primary-color);
+}
+
+.progress-line:last-child {
+    display: none;
+}
+
+.progress-bar span {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.progress-bar-top {
+    width: 97%;
+    margin: 1.2rem auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
 }
 
 /* Customer Profile */
