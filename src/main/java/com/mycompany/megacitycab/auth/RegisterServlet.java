@@ -1,7 +1,6 @@
 package com.mycompany.megacitycab.auth;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +27,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if (UserAuth.register(firstName, lastName, email, contactNumber, homeAddress, nic, password)) {
+            
             response.sendRedirect("login.jsp?registersuccess=1");
         } else {
             response.sendRedirect("login.jsp?registererror=1");

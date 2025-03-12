@@ -73,13 +73,13 @@ public class UserAuth {
             return false;
         }
     }
-
+    
     public static boolean register(String firstName, String lastName, String email, String contactNumber, String homeAddress, String nic, String password) {
         if (emailExists(email)) {
             return false;
         }
 
-        String query = "INSERT INTO users (first_name, last_name, email, contact_number, home_address, nic, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (first_name, last_name, email, contact_number, home_address, nic, password, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, firstName);
             stmt.setString(2, lastName);
@@ -88,8 +88,21 @@ public class UserAuth {
             stmt.setString(5, homeAddress);
             stmt.setString(6, nic);
             stmt.setString(7, password);
+            stmt.setBoolean(8, false);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean verifyEmail(String token) {
+        String query = "UPDATE users SET is_verified = true WHERE verification_token = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, token);
+            int rowsUpdated = pstmt.executeUpdate();
+            return rowsUpdated > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

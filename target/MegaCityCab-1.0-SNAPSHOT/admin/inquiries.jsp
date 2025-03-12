@@ -36,6 +36,7 @@
             href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
             rel="stylesheet"
             />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <link rel="stylesheet" href="../css/admindashboard.css">
     </head>
@@ -55,7 +56,10 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Registered Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +69,21 @@
                                     <td><%= contact.getFirstName()%></td>
                                     <td><%= contact.getLastName()%></td>
                                     <td><%= contact.getEmail()%></td>
+                                    <td><%= contact.getSubject()%></td>
+                                    <td><%= contact.getMessage().length() > 10 ? contact.getMessage().substring(0, 10) + "..." : contact.getMessage()%></td>
                                     <td><%= contact.getCreatedAt()%></td>
+                                    <td>
+                                        <button class="view-btn"
+                                                data-id="<%= contact.getId()%>"
+                                                data-first-name="<%= contact.getFirstName()%>"
+                                                data-last-name="<%= contact.getLastName()%>"
+                                                data-email="<%= contact.getEmail()%>"
+                                                data-subject="<%= contact.getSubject()%>"
+                                                data-message="<%= contact.getMessage()%>"
+                                                data-created-at="<%= contact.getCreatedAt()%>">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
                                 <% }%>
                             </tbody>
@@ -73,7 +91,7 @@
                     </div>
                             <div class="section section2">
                                 <h2>Recent Inquiries</h2>
-                        <ul>
+                                <ul>
                             <% for (Contact contact : recentContacts) {
                                     String formattedDate;
                                     if (contact.getCreatedAt().toLocalDateTime().toLocalDate().equals(today.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
@@ -92,5 +110,48 @@
                 </div>
             </main>
         </div>
+                        <script>
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function () {
+
+                    const id = this.getAttribute('data-id');
+                    const firstName = this.getAttribute('data-first-name');
+                    const lastName = this.getAttribute('data-last-name');
+                    const email = this.getAttribute('data-email');
+                    const subject = this.getAttribute('data-subject');
+                    const message = this.getAttribute('data-message');
+                    const createdAt = this.getAttribute('data-created-at');
+
+                    console.log("ID:", id);
+                    console.log("First Name:", firstName);
+                    console.log("Last Name:", lastName);
+                    console.log("Email:", email);
+                    console.log("Subject:", subject);
+                    console.log("Message:", message);
+                    console.log("Created At:", createdAt);
+
+                    const content = `
+                        <div style="text-align: left;">
+                        <p><strong>ID:</strong> ${id}</p>
+                        <p><strong>First Name:</strong> ${firstName}</p>
+                        <p><strong>Last Name:</strong> ${lastName}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <p><strong>Subject:</strong> ${subject}</p>
+                        <p><strong>Message:</strong> ${message}</p>
+                        <p><strong>Registered Date:</strong> ${createdAt}</p>
+                        </div>
+                    `;
+
+                    console.log("Popup Content:", content);
+
+                        Swal.fire({
+                            title: 'Inquiry Details',
+                            html: content,
+                            confirmButtonText: 'Close',
+                            confirmButtonColor: '#3085d6',
+                        });
+                    });
+                });
+                        </script>
     </body>
 </html>
