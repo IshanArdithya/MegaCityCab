@@ -35,17 +35,17 @@
                                         <i class="ri-lock-password-fill input-icon"></i>
                                     </div>
                                 </div>
+                                <%
+                                    String error = request.getParameter("error");
+                                    if (error != null && error.equals("1")) {
+                                        out.println("<p class='admin-error1'>Invalid email or password. Please try again.</p>");
+                                    }
+                                %>
                                 <div class="login-form-group">
                                     <button type="submit" class="login-btn">SIGN IN <i
                                             class="ri-arrow-right-double-fill animate-icon"></i></button>
                                 </div>
                             </form>
-                            <%
-                                String error = request.getParameter("error");
-                                if (error != null && error.equals("1")) {
-                                    out.println("<p style='color: red;'>Invalid email or password. Please try again.</p>");
-                                }
-                            %>
                         </div>
                     </div>
 

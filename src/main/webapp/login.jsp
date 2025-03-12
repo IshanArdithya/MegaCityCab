@@ -20,6 +20,7 @@
         <title>Sign-In | Mega City Cab</title>
         <link rel="stylesheet" href="css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <section id="loginPage">
@@ -47,6 +48,12 @@
                                         <i class="ri-lock-password-fill input-icon"></i>
                                     </div>
                                 </div>
+                                <%
+                                    String error = request.getParameter("error");
+                                    if (error != null && error.equals("1")) {
+                                        out.println("<p class='admin-error1'>Invalid email or password. Please try again.</p>");
+                                    }
+                                %>
                                 <div class="login-form-group">
                                     <button type="submit" class="login-btn">SIGN IN <i
                                             class="ri-arrow-right-double-fill animate-icon"></i></button>
@@ -201,9 +208,7 @@
             </div>
         </section>
 
-
-
-            <script>
+                                <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const loginContainer = document.querySelector(".login-container");
                 const registerContainer = document.querySelector(".register-container");
@@ -223,7 +228,53 @@
                         loginPageSection.classList.remove("nav-a-dark");
                     });
                 });
-        </script>
-        <script src="js/userregister.js"></script>
+            </script>
+            <script>
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        const registerSuccess = getParameterByName('registersuccess');
+        if (registerSuccess === '1') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful!',
+                text: 'You have successfully registered. Please log in.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'swal2-confirm'
+                }
+            });
+        }
+
+        const registerError = getParameterByName('registererror');
+        if (registerError === '1') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Error',
+                text: 'An error occurred during registration. Please try again.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'swal2-confirm'
+                }
+            });
+        } else if (registerError === '3') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Email Already Exists',
+                text: 'The email you entered is already registered. Please use a different email.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'swal2-confirm'
+                }
+            });
+        }
+            </script>
+            <script src="js/userregister.js"></script>
     </body>
 </html>
