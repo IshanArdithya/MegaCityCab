@@ -1,5 +1,26 @@
+<%@page import="com.mycompany.megacitycab.dao.UserDAO" %>
+<%@page import="com.mycompany.megacitycab.model.User" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date" %>
+<%@page import="javax.servlet.http.HttpSession" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@include file="../sessionCheck.jsp" %>
+
+<%
+    HttpSession sessionprofile = request.getSession();
+    String email = (String) sessionprofile.getAttribute("email");
+
+    UserDAO userDAO = new UserDAO();
+    User user = userDAO.getUserByEmail(email);
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
+    String joinedDate = "";
+    if (user != null && user.getCreatedAt() != null) {
+        joinedDate = dateFormat.format(user.getCreatedAt());
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -40,13 +61,14 @@
                         <div class="profile__info-about">
                             <h2>About</h2>
                             <div class="profile__information_section">
+                                <% if (user != null) {%>
                                 <div class="profile__information">
                                     <div class="profile__information-icon">
                                         <i class="ri-mail-fill"></i>
                                     </div>
                                     <div class="profile__information-wrap">
                                         <span class="information-title">Email Address</span>
-                                        <span class="information-context">ardithya123@gmail.com</span>
+                                        <span class="information-context"><%= user.getEmail()%></span>
                                     </div>
                                 </div>
                                 <div class="profile__information">
@@ -55,7 +77,7 @@
                                     </div>
                                     <div class="profile__information-wrap">
                                         <span class="information-title">Address</span>
-                                        <span class="information-context">12/10, asdadas, Colombo 05</span>
+                                        <span class="information-context"><%= user.getHomeAddress()%></span>
                                     </div>
                                 </div>
                                 <div class="profile__information">
@@ -64,7 +86,7 @@
                                     </div>
                                     <div class="profile__information-wrap">
                                         <span class="information-title">Contact Number</span>
-                                        <span class="information-context">0112471242</span>
+                                        <span class="information-context"><%= user.getContactNumber()%></span>
                                     </div>
                                 </div>
                                 <div class="profile__information">
@@ -73,9 +95,12 @@
                                     </div>
                                     <div class="profile__information-wrap">
                                         <span class="information-title">Joined</span>
-                                        <span class="information-context">January 2025</span>
+                                        <span class="information-context"><%= joinedDate%></span>
                                     </div>
                                 </div>
+                                <% } else { %>
+                                <p>No user data found.</p>
+                                <% }%>
                             </div>
                         </div>
                     </div>
