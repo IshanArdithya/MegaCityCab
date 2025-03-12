@@ -11,6 +11,10 @@
 <%
     HttpSession sessionprofile = request.getSession();
     String email = (String) sessionprofile.getAttribute("email");
+    if (sessionprofile == null || sessionprofile.getAttribute("email") == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
 
     UserDAO userDAO = new UserDAO();
     User user = userDAO.getUserByEmail(email);
@@ -19,6 +23,16 @@
     String joinedDate = "";
     if (user != null && user.getCreatedAt() != null) {
         joinedDate = dateFormat.format(user.getCreatedAt());
+    }
+
+    int bookingCount = 0;
+    if (user != null) {
+        bookingCount = userDAO.getBookingCountByUserId(user.getId());
+    }
+
+    int reviewsCount = 0;
+    if (user != null) {
+        reviewsCount = userDAO.getReviewsCountByUserId(user.getId());
     }
 %>
 
@@ -48,12 +62,12 @@
                             </div>
                             <div class="info-main-right">
                                 <div class="info-main-stats">
-                                    <h3>100000</h3>
+                                    <h3><%= bookingCount%></h3>
                                     <p>Bookings</p>
                                 </div>
                                 <div class="profile__stats-divider"></div>
                                 <div class="info-main-stats">
-                                    <h3>1</h3>
+                                    <h3><%= reviewsCount%></h3>
                                     <p>Reviews</p>
                                 </div>
                             </div>

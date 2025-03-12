@@ -56,28 +56,56 @@ public class UserDAO {
 
         return users;
     }
-    
+
     public User getUserByEmail(String email) {
-    String query = "SELECT id, first_name, last_name, email, contact_number, home_address, nic, created_at FROM users WHERE email = ?";
-    try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setString(1, email);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            return new User(
-                rs.getInt("id"),
-                rs.getString("first_name"),
-                rs.getString("last_name"),
-                rs.getString("email"),
-                rs.getString("contact_number"),
-                rs.getString("home_address"),
-                rs.getString("nic"),
-                rs.getTimestamp("created_at")
-            );
+        String query = "SELECT id, first_name, last_name, email, contact_number, home_address, nic, created_at FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email"),
+                        rs.getString("contact_number"),
+                        rs.getString("home_address"),
+                        rs.getString("nic"),
+                        rs.getTimestamp("created_at")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return null;
     }
-    return null;
-}
+
+    public int getBookingCountByUserId(int userId) {
+        String query = "SELECT COUNT(*) AS booking_count FROM bookings WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("booking_count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int getReviewsCountByUserId(int userId) {
+        String query = "SELECT COUNT(*) AS reviews_count FROM reviews WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("reviews_count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }
