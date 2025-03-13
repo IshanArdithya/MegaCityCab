@@ -1,6 +1,7 @@
 package com.mycompany.megacitycab.dao;
 
 import com.mycompany.megacitycab.auth.DatabaseConnection;
+import com.mycompany.megacitycab.auth.PasswordHasher;
 import com.mycompany.megacitycab.model.Driver;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +14,13 @@ import java.util.List;
 public class DriverDAO {
     
     public boolean authenticateDriver(String email, String password) {
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
+        
         String query = "SELECT * FROM driver_users WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
-            stmt.setString(2, password);
+            stmt.setString(2, hashedPassword);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -55,6 +59,8 @@ public class DriverDAO {
         if (emailExists(email)) {
             return false;
         }
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
 
         String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, home_address, nic, password, gender, vehicle_name, passenger_count, vehicle_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -64,7 +70,7 @@ public class DriverDAO {
             stmt.setString(4, contactNumber);
             stmt.setString(5, homeAddress);
             stmt.setString(6, nic);
-            stmt.setString(7, password);
+            stmt.setString(7, hashedPassword);
             stmt.setString(8, gender);
             stmt.setString(9, vehicleName);
             stmt.setString(10, passengerCount);

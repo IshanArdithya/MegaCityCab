@@ -2,6 +2,7 @@ package com.mycompany.megacitycab.dao;
 
 import com.mycompany.megacitycab.model.User;
 import com.mycompany.megacitycab.auth.DatabaseConnection;
+import com.mycompany.megacitycab.auth.PasswordHasher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +14,13 @@ import java.util.List;
 public class UserDAO {
 
     public boolean authenticateUser(String email, String password) {
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
+        
         String query = "SELECT * FROM users WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
-            stmt.setString(2, password);
+            stmt.setString(2, hashedPassword);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -64,6 +68,8 @@ public class UserDAO {
         if (emailExists(email)) {
             return false;
         }
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
 
         String query = "INSERT INTO users (first_name, last_name, email, contact_number, home_address, nic, password, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -73,7 +79,7 @@ public class UserDAO {
             stmt.setString(4, contactNumber);
             stmt.setString(5, homeAddress);
             stmt.setString(6, nic);
-            stmt.setString(7, password);
+            stmt.setString(7, hashedPassword);
             stmt.setBoolean(8, false);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;

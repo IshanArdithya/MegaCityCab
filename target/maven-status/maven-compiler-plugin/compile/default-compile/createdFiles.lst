@@ -9,6 +9,7 @@ com\mycompany\megacitycab\servlets\DriverSignupServlet.class
 com\mycompany\megacitycab\model\StaffUser.class
 com\mycompany\megacitycab\model\Driver.class
 com\mycompany\megacitycab\auth\CheckDB.class
+com\mycompany\megacitycab\auth\PasswordHasher.class
 com\mycompany\megacitycab\dao\UserDAO.class
 com\mycompany\megacitycab\model\User.class
 com\mycompany\megacitycab\servlets\DriverLogoutServlet.class

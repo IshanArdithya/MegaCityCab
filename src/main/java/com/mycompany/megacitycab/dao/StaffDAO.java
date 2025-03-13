@@ -1,6 +1,7 @@
 package com.mycompany.megacitycab.dao;
 
 import com.mycompany.megacitycab.auth.DatabaseConnection;
+import com.mycompany.megacitycab.auth.PasswordHasher;
 import com.mycompany.megacitycab.model.StaffUser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +14,13 @@ import java.util.List;
 public class StaffDAO {
 
     public boolean authenticateStaff(String email, String password) {
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
+        
         String query = "SELECT * FROM staff_users WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
-            stmt.setString(2, password);
+            stmt.setString(2, hashedPassword);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -69,6 +73,8 @@ public class StaffDAO {
         if (emailExists(email)) {
             return false;
         }
+        
+        String hashedPassword = PasswordHasher.hashPassword(password);
 
         String query = "INSERT INTO staff_users (first_name, last_name, email, role, password) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -76,7 +82,7 @@ public class StaffDAO {
             stmt.setString(2, lastName);
             stmt.setString(3, email);
             stmt.setString(4, role);
-            stmt.setString(5, password);
+            stmt.setString(5, hashedPassword);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
