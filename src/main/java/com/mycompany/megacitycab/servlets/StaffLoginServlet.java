@@ -1,6 +1,6 @@
 package com.mycompany.megacitycab.servlets;
 
-import com.mycompany.megacitycab.auth.StaffAuth;
+import com.mycompany.megacitycab.dao.StaffDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,26 +12,34 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "StaffLoginServlet", urlPatterns = {"/staff-login"})
 public class StaffLoginServlet extends HttpServlet {
 
+    private StaffDAO staffDAO;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        staffDAO = new StaffDAO();
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (StaffAuth.authenticateStaff(email, password)) {
+        if (staffDAO.authenticateStaff(email, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("staff_email", email);
-            
-            String staffFirstName = StaffAuth.getFirstName(email);
+
+            String staffFirstName = staffDAO.getStaffFirstName(email);
             if (staffFirstName != null) {
                 session.setAttribute("staffFirstName", staffFirstName);
             }
-            
-            String staffRole = StaffAuth.getRole(email);
+
+            String staffRole = staffDAO.getStaffRole(email);
             if (staffRole != null) {
                 session.setAttribute("staffRole", staffRole);
             }
-            
+
             response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
         } else {
             response.sendRedirect(request.getContextPath() + "/adminlogin.jsp?error=1");

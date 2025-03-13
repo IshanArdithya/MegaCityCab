@@ -1,6 +1,6 @@
 package com.mycompany.megacitycab.servlets;
 
-import com.mycompany.megacitycab.auth.DriverAuth;
+import com.mycompany.megacitycab.dao.DriverDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "DriverSignupServlet", urlPatterns = {"/driver-signup"})
 public class DriverSignupServlet extends HttpServlet {
+
+    private DriverDAO driverDAO;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        driverDAO = new DriverDAO();
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,13 +40,13 @@ public class DriverSignupServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=2");
             return;
         }
-        
-        if (DriverAuth.emailExists(email)) {
+
+        if (driverDAO.emailExists(email)) {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=3");
             return;
         }
 
-        if (DriverAuth.registerDriver(firstName, lastName, email, contactNumber, homeAddress, nic, password, gender, vehicleName, passengerCount, vehicleNumber)) {
+        if (driverDAO.registerDriver(firstName, lastName, email, contactNumber, homeAddress, nic, password, gender, vehicleName, passengerCount, vehicleNumber)) {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registersuccess=1");
         } else {
             response.sendRedirect(request.getContextPath() + "/driverlogin.jsp?registererror=1");
