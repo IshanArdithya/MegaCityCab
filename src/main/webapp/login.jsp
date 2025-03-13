@@ -26,7 +26,7 @@
                         <div class="login">
                             <h2>Welcome To</h2>
                             <h1 class="brand-name">Mega City Cab</h1>
-                            <form action="login" method="POST">
+                            <form action="${pageContext.request.contextPath}/login" method="POST">
                                 <div class="login-form-group">
                                     <label>Email</label>
                                     <div class="input-container">
@@ -91,7 +91,7 @@
                             <div class="register">
                                 <h2>Create Account</h2>
                                 <h1 class="brand-name brand-name-register">Mega City Cab</h1>
-                                <form action="register" method="POST">
+                                <form action="${pageContext.request.contextPath}/register" method="POST">
                                     <div class="form-row">
                                         <div class="login-form-group">
                                             <label>First Name</label>

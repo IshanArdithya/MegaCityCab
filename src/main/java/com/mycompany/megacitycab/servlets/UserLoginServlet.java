@@ -1,0 +1,42 @@
+package com.mycompany.megacitycab.servlets;
+
+import com.mycompany.megacitycab.auth.UserAuth;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet(name = "UserLoginServlet", urlPatterns = {"/login"})
+public class UserLoginServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        if (UserAuth.login(email, password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+
+            String firstName = UserAuth.getFirstName(email);
+            String lastName = UserAuth.getLastName(email);
+            String contactNumber = UserAuth.getContactNumber(email);
+            if (firstName != null) {
+                session.setAttribute("firstName", firstName);
+            }
+            if (lastName != null) {
+                session.setAttribute("lastName", lastName);
+            }
+            if (contactNumber != null) {
+                session.setAttribute("contactNumber", contactNumber);
+            }
+
+            response.sendRedirect("index.jsp");
+        } else {
+            response.sendRedirect("login.jsp?error=1");
+        }
+    }
+}

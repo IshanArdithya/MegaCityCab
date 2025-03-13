@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="contact-form">
-                        <form class="contact-form-flex" action="contact" method="POST">
+                        <form class="contact-form-flex" action="${pageContext.request.contextPath}/contact" method="POST">
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="entryarea">
