@@ -1789,7 +1789,11 @@ input {
 
 .book__now {
     width: 100%;
-    background: #1d2d50;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-color2)
+        );
     color: white;
     border: none;
     padding: 14px;
@@ -1802,7 +1806,11 @@ input {
 }
 
 .book__now:hover {
-    background: #162242;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color2),
+        var(--primary-color)
+        );
     transform: scale(1.02);
 }
 
