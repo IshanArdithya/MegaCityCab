@@ -32,7 +32,6 @@
                                 <div class="invoice__header-section">
                                     <h4><%= billingAddress.getFirstName()%> <%= billingAddress.getLastName()%></h4>
                                     <p>Booking Number: <span><%= booking.getId()%></span></p>
-                                    <p>Order Date: <span>June 15, 2025</span></p>
                                     <p>Email: <span><%= billingAddress.getEmail()%></span></p>
                                     <p>Contact Number: <span><%= billingAddress.getPhoneNumber()%></span></p>
                                 </div>
