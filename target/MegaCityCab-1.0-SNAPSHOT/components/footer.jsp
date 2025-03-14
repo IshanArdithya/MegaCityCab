@@ -4,7 +4,7 @@
         <div class="footer-brand">
             <a href="/MegaCityCab/index.jsp"><img src="/MegaCityCab/images/logo-white.png" alt=""></a>
             <div>
-                <p>Mega City Cab Web – Your reliable ride-booking platform, offering seamless booking, secure rides, and hassle-free billing.</p>
+                <p>Your reliable ride-booking platform, offering seamless booking, secure rides, and hassle-free billing.</p>
                 <div class="footer-socials">
                     <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
                     <a href="https://x.com/home"><i class="ri-twitter-x-fill"></i></a>

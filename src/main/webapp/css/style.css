@@ -1540,12 +1540,13 @@ input {
     text-align: center;
 }
 
-.swal2-confirm {    
+.swal2-confirm {
     background: linear-gradient(
         135deg,
         var(--primary-color),
         var(--primary-color2)
-        );;
+        );
+    ;
     box-shadow: none !important;
 }
 
@@ -1691,6 +1692,10 @@ input {
     margin-bottom: 3rem;
     display: flex;
     justify-content: center;
+}
+
+.booking__row {
+    margin-bottom: 2rem;
 }
 
 .booking__box {
@@ -1855,6 +1860,19 @@ input {
     border-radius: 6px;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.checkout-form h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.checkout-form .contact-form {
+    width: 100%;
+}
+
+.checkout-form .entryarea input {
+    z-index: 111;
 }
 
 /* Driver Login */
@@ -2146,7 +2164,7 @@ input {
 }
 
 .profile__info-about h2 {
-    font-size: 1.3rem;  
+    font-size: 1.3rem;
 }
 
 .profile__information_section {
@@ -2219,3 +2237,99 @@ input {
 .profile__information-wrap .information-context {
     font-size: 0.8rem;
 }
+
+.invoice__container {
+    max-width: 1000px;
+    margin: 4rem auto;
+    color: var(--text-dark);
+}
+
+.invoice__header-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoice__section h3 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.invoice__header-section {
+    margin: 1rem 0;
+}
+
+.invoice__header-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.invoice__header-section p {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #a8a8a8;
+}
+
+.invoice__header-section span  {
+    margin-left: 3px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.invoice__contents table {
+    width: 100%;
+    border-collapse: collapse;
+    border: transparent;
+}
+.invoice__contents th, .invoice__contents td {
+    padding: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+.invoice__contents th {
+    background-color: black;
+    color: white;
+}
+.invoice__contents .description-details {
+    font-size: 0.8rem;
+    color: #444;
+    margin-left: 15px;
+}
+
+.spacer-row td {
+    height: 100px;
+    background: none;
+    border: none;
+}
+
+.invoice__contents .total-section td {
+    padding: 5px 0;
+}
+
+.invoice__contents .subtotal {
+    border-top: 2px solid #e7e7e7;
+}
+
+.invoice__contents .subtotal-td {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.invoice__contents .subtotal-total-td {
+    border-bottom: 2px solid var(--text-dark);
+    border-top: 2px solid var(--text-dark);
+}
+
+.invoice__contents .total-section tr:last-child td {
+    border-top: 2px solid black;
+    font-weight: bold;
+}
+
+.invoice__footer-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+

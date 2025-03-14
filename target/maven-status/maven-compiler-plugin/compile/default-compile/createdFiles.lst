@@ -1,6 +1,8 @@
 com\mycompany\megacitycab\auth\DatabaseConnection.class
+com\mycompany\megacitycab\model\BillingAddress.class
 com\mycompany\megacitycab\dao\PricingDAO.class
 com\mycompany\megacitycab\servlets\BookServlet.class
+com\mycompany\megacitycab\servlets\InvoiceServlet.class
 com\mycompany\megacitycab\servlets\DriverLoginServlet.class
 com\mycompany\megacitycab\servlets\DriverSignupServlet.class
 com\mycompany\megacitycab\auth\PasswordHasher.class
@@ -8,6 +10,7 @@ com\mycompany\megacitycab\dao\UserDAO.class
 com\mycompany\megacitycab\dao\DriverDAO.class
 com\mycompany\megacitycab\dao\StaffDAO.class
 com\mycompany\megacitycab\servlets\UserLoginServlet.class
+com\mycompany\megacitycab\dao\BillingAddressDAO.class
 com\mycompany\megacitycab\model\Contact.class
 com\mycompany\megacitycab\dao\BookingDAO.class
 com\mycompany\megacitycab\servlets\StaffLogoutServlet.class

@@ -8,6 +8,7 @@
         <title>Bookings | Mega City Cab</title>
         <link rel="stylesheet" href="css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <%@ include file="components/header.jsp" %>
@@ -45,9 +46,77 @@
                                     </div>
                                 </div>
                             </div>
+                            <button class="book__now" onclick="showCheckoutForm()">Book Now</button>
                         </div>
 
-                        <button class="book__now" onclick="bookNow()">Book Now</button>
+                        <div class="booking__row">
+                            <!-- checkout form - hidden (only show when click book now) -->
+                            <div id="checkoutForm" class="checkout-form booking__content-box booking__border" style="display: none;">
+                                <h3>Checkout</h3>
+                                <div class="contact-form">
+                                    <form class="contact-form-flex" id="billingForm">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="firstName" name="firstName" required>
+                                                    <div class="labelline">First Name *</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="lastName" name="lastName" required>
+                                                    <div class="labelline">Last Name *</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="address1" name="address1" required>
+                                                    <div class="labelline">Address *</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="address2" name="address2">
+                                                    <div class="labelline">Address 2</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="city" name="city" required>
+                                                    <div class="labelline">City *</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="phoneNumber" name="phoneNumber" required>
+                                                    <div class="labelline">Contact Number *</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="email" id="email" name="email" required>
+                                                    <div class="labelline">Email *</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="confirm-booking" onclick="confirmBooking()">Confirm Booking</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="booking__right">
                         <div class="booking__border">
@@ -81,76 +150,114 @@
         <%@ include file="components/footer.jsp" %>
 
         <script>
-            let selectedPassengerCount = null;
+    let selectedPassengerCount = null;
 
-            function selectVehicle(event, button) {
-                event.preventDefault();
+    function selectVehicle(event, button) {
+        event.preventDefault();
 
-                const buttons = document.querySelectorAll('.vehicle__btn');
-                buttons.forEach(btn => btn.classList.remove('active'));
+        const buttons = document.querySelectorAll('.vehicle__btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
 
-                button.classList.add('active');
+        button.classList.add('active');
 
-                selectedPassengerCount = button.getAttribute('data-passenger-count');
+        selectedPassengerCount = button.getAttribute('data-passenger-count');
 
-                fetchPrice(selectedPassengerCount);
-            }
+        fetchPrice(selectedPassengerCount);
+    }
 
-            function fetchPrice(passengerCount) {
-                fetch('/MegaCityCab/getPrice?passengerCount=' + passengerCount)
-                        .then(response => response.json())
-                        .then(data => {
-                            const priceElement = document.querySelector('.booking__price');
-                            const price = parseFloat(data.price);
-                            if (!isNaN(price)) {
-                                priceElement.textContent = `Price: LKR ${price.toFixed(2)}`;
-                            } else {
-                                console.error("Invalid price value:", data.price);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching price:', error);
-                        });
-            }
-
-            function bookNow() {
-                if (!selectedPassengerCount) {
-                    alert("Please select a vehicle.");
-                    return;
+    function fetchPrice(passengerCount) {
+        fetch('/MegaCityCab/getPrice?passengerCount=' + passengerCount)
+            .then(response => response.json())
+            .then(data => {
+                const priceElement = document.querySelector('.booking__price');
+                const price = parseFloat(data.price);
+                if (!isNaN(price)) {
+                    priceElement.textContent = `Price: LKR ${price.toFixed(2)}`;
+                } else {
+                    console.error("Invalid price value:", data.price);
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching price:', error);
+            });
+    }
 
-                const pickupLocation = document.getElementById('pickupLocation').value;
-                const dropoffLocation = document.getElementById('dropoffLocation').value;
-                const bookingDateTime = document.getElementById('bookingDateTime').value;
-                const [date, time] = bookingDateTime.split('T');
+    function showCheckoutForm() {
+        if (!selectedPassengerCount) {
+            alert("Please select a vehicle.");
+            return;
+        }
 
-                const bookingData = {
-                    pickupLocation: pickupLocation,
-                    dropoffLocation: dropoffLocation,
-                    date: date,
-                    time: time,
-                    passengerCount: parseInt(selectedPassengerCount)
-                };
+        // display checkout form
+        document.getElementById('checkoutForm').style.display = 'block';
+    }
 
-                fetch('/MegaCityCab/book', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(bookingData)
-                })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert("Booking successful!");
-                            } else {
-                                alert("Booking failed: " + data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error booking:', error);
-                        });
-            }
+    function confirmBooking() {
+    const pickupLocation = document.getElementById('pickupLocation').value;
+    const dropoffLocation = document.getElementById('dropoffLocation').value;
+    const bookingDateTime = document.getElementById('bookingDateTime').value;
+    const [date, time] = bookingDateTime.split('T');
+
+    const billingData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        address1: document.getElementById('address1').value,
+        address2: document.getElementById('address2').value,
+        city: document.getElementById('city').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        email: document.getElementById('email').value,
+        pickupLocation: pickupLocation,
+        dropoffLocation: dropoffLocation,
+        date: date,
+        time: time,
+        passengerCount: parseInt(selectedPassengerCount)
+    };
+
+    // Send billing data to server
+    fetch('/MegaCityCab/book', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(billingData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(data.bookingId);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Booking Successful!',
+                text: 'Your booking has been confirmed.',
+                showCancelButton: true,
+                confirmButtonText: 'View Invoice',
+                cancelButtonText: 'Close',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // redirect to invoice
+                    window.location.href = "/MegaCityCab/invoice?bookingId=" + data.bookingId;
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Failed to save booking: ' + data.message,
+                confirmButtonText: 'OK'
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error booking:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An error occurred while processing your booking.',
+            confirmButtonText: 'OK'
+        });
+    });
+}
         </script>
     </body>
 </html>

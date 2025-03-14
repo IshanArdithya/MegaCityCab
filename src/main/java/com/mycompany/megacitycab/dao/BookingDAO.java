@@ -14,9 +14,9 @@ import java.util.List;
 
 public class BookingDAO {
 
-    public boolean createBooking(int userId, String pickupLocation, String dropoffLocation, String date, String time, int driverId, double totalPrice) {
+    public int createBooking(int userId, String pickupLocation, String dropoffLocation, String date, String time, int driverId, double totalPrice) {
         String query = "INSERT INTO bookings (user_id, pickup_location, dropoff_location, date, time, driver_id, total_price) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, userId);
             stmt.setString(2, pickupLocation);
             stmt.setString(3, dropoffLocation);
@@ -25,11 +25,19 @@ public class BookingDAO {
             stmt.setInt(6, driverId);
             stmt.setDouble(7, totalPrice);
             int rowsInserted = stmt.executeUpdate();
-            return rowsInserted > 0;
+
+            if (rowsInserted > 0) {
+                // retrieve booking ID
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getInt(1);
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return -1;
     }
 
     public List<Booking> getAllBookings() {
@@ -126,7 +134,7 @@ public class BookingDAO {
             return false;
         }
     }
-    
+
     public List<Booking> getCompletedDriverBookings() {
         List<Booking> bookings = new ArrayList<>();
         String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
@@ -159,4 +167,29 @@ public class BookingDAO {
 
         return bookings;
     }
+    
+    public Booking getBookingById(int bookingId) {
+    String query = "SELECT * FROM bookings WHERE id = ?";
+    try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setInt(1, bookingId);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new Booking(
+                rs.getInt("id"),
+                rs.getInt("user_id"),
+                rs.getString("pickup_location"),
+                rs.getString("dropoff_location"),
+                rs.getDate("date").toLocalDate(),
+                rs.getTime("time").toLocalTime(),
+                rs.getInt("driver_id"),
+                rs.getDouble("total_price"),
+                rs.getString("status"),
+                rs.getTimestamp("created_at")
+            );
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 }

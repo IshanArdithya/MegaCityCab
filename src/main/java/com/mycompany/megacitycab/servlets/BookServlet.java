@@ -1,5 +1,6 @@
 package com.mycompany.megacitycab.servlets;
 
+import com.mycompany.megacitycab.dao.BillingAddressDAO;
 import com.mycompany.megacitycab.dao.BookingDAO;
 import com.mycompany.megacitycab.dao.DriverDAO;
 import com.mycompany.megacitycab.dao.PricingDAO;
@@ -49,6 +50,13 @@ public class BookServlet extends HttpServlet {
         }
 
         String jsonString = requestBody.toString();
+        String firstName = extractStringValue(jsonString, "firstName");
+        String lastName = extractStringValue(jsonString, "lastName");
+        String address1 = extractStringValue(jsonString, "address1");
+        String address2 = extractStringValue(jsonString, "address2");
+        String city = extractStringValue(jsonString, "city");
+        String phoneNumber = extractStringValue(jsonString, "phoneNumber");
+        String emailBilling = extractStringValue(jsonString, "email");
         String pickupLocation = extractStringValue(jsonString, "pickupLocation");
         String dropoffLocation = extractStringValue(jsonString, "dropoffLocation");
         String date = extractStringValue(jsonString, "date");
@@ -58,7 +66,6 @@ public class BookServlet extends HttpServlet {
         PricingDAO pricingDAO = new PricingDAO();
         double totalPrice = pricingDAO.getPriceByPassengerCount(passengerCount);
 
-        // gget an available driver
         DriverDAO driverDAO = new DriverDAO();
         List<Integer> availableDrivers = driverDAO.getAvailableDrivers(date, passengerCount);
 
@@ -69,13 +76,20 @@ public class BookServlet extends HttpServlet {
             int driverId = availableDrivers.get(0);
 
             BookingDAO bookingDAO = new BookingDAO();
-            boolean bookingCreated = bookingDAO.createBooking(userId, pickupLocation, dropoffLocation, date, time, driverId, totalPrice);
+            int bookingId = bookingDAO.createBooking(userId, pickupLocation, dropoffLocation, date, time, driverId, totalPrice);
 
-            if (bookingCreated) {
-                jsonResponse = "{\"success\": true, \"message\": \"Booking created successfully.\"}";
-            } else {
-                jsonResponse = "{\"success\": false, \"message\": \"Failed to create booking.\"}";
-            }
+            if (bookingId != -1) {
+    BillingAddressDAO billingAddressDAO = new BillingAddressDAO();
+    boolean billingSaved = billingAddressDAO.saveBillingAddress(bookingId, firstName, lastName, address1, address2, city, phoneNumber, emailBilling);
+
+    if (billingSaved) {
+        jsonResponse = "{\"success\": true, \"message\": \"Booking and billing details saved successfully.\", \"bookingId\": " + bookingId + "}";
+    } else {
+        jsonResponse = "{\"success\": false, \"message\": \"Failed to save billing details.\"}";
+    }
+} else {
+    jsonResponse = "{\"success\": false, \"message\": \"Failed to create booking.\"}";
+}
         }
 
         sendResponse(response, jsonResponse);
