@@ -33,7 +33,7 @@
                 <div class="list">
                     <div class="item"><img src="images/gallery/bg1.jpg" alt=""></div>
                     <div class="item"><img src="images/gallery/bg2.jpg" alt=""></div>
-                    <div class="item"><img src="images/gallery/bg3.png" alt=""></div>
+                    <div class="item"><img src="images/gallery/bg3.jpg" alt=""></div>
                 </div>
                 <div class="buttons">
                     <button id="prev"><</button>
@@ -164,7 +164,7 @@
                                     every time I use Mega City Cab.
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Allan Collins</h5>
                                     <h6>★★★★★</h6>
                                 </div>
@@ -180,7 +180,7 @@
                                     and excellent service!
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Tanya Grant</h5>
                                     <h6>★★★★★</h6>
                                 </div>
@@ -195,7 +195,7 @@
                                     Needed a last-minute ride to the airport, and Mega City Cab was there in no time!
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Clay Washington</h5>
                                     <h6>★★★★★</h6>
                                 </div>
@@ -211,7 +211,7 @@
                                     are smooth. Great service every time!
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Emily Johnson</h5>
                                     <h6>★★★★★</h6>
                                 </div>
@@ -226,7 +226,7 @@
                                     No hidden fees, and the pricing is very fair. Definitely the best cab service in town!
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Michael Brown</h5>
                                     <h6>★★★★★</h6>
                                 </div>
@@ -242,7 +242,7 @@
                                     get instant confirmations. Super convenient!
                                 </p>
                                 <div>
-                                    <img src="https://avatar.iran.liara.run/public" alt="user" />
+                                    <img src="/MegaCityCab/images/person1.png" alt="user" />
                                     <h5>Sarah Lee</h5>
                                     <h6>★★★★★</h6>
                                 </div>

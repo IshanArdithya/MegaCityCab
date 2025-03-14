@@ -16,7 +16,7 @@
             <small>Driver</small>
         </div>
         <div class="avatar">
-            <img src="https://avatar.iran.liara.run/public" alt="Avatar">
+            <img src="/MegaCityCab/images/person1.png" alt="Avatar">
         </div>
     </div>
 </div>

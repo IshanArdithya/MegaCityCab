@@ -57,7 +57,7 @@
                     <div class="profile__info">
                         <div class="profile__info-main">
                             <div class="info-main-left">
-                                <img src="https://avatar.iran.liara.run/public" alt="User Avatar" class="profile__avatar">
+                                <img src="/MegaCityCab/images/person1.png" alt="User Avatar" class="profile__avatar">
                                 <div class="profile__name">Ishan Ardithya</div>
                             </div>
                             <div class="info-main-right">

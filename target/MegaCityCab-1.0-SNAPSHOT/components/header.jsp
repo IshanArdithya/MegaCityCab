@@ -11,7 +11,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <a href="/MegaCityCab/index.jsp"><img src="https://placehold.co/500x100" alt=""></a>
+                    <a href="/MegaCityCab/index.jsp"><img src="/MegaCityCab/images/logo-white.png" alt=""></a>
                 </div>
                 <ul>
                     <li class="main-navigation"><a href="/MegaCityCab/index.jsp">Home</a></li>
@@ -25,11 +25,11 @@
                         if (sessionEmail != null) {%>
                 <div class="avatar-container">
                     <a href="#" class="avatar-link">
-                        <img src="https://avatar.iran.liara.run/public" alt="User Avatar" class="avatar" id="avatar">
+                        <img src="/MegaCityCab/images/person1.png" alt="User Avatar" class="avatar" id="avatar">
                     </a>
                     <div class="dropdown-menu" id="dropdownMenu">
                         <div class="dropdown-header">
-                            <img src="https://avatar.iran.liara.run/public" alt="User Avatar" class="dropdown-avatar">
+                            <img src="/MegaCityCab/images/person1.png" alt="User Avatar" class="dropdown-avatar">
                             <div class="dropdown-greeting">Hi, <%= firstName != null ? firstName : "User"%></div>
                         </div>
                         <a href="/MegaCityCab/user/profile.jsp" class="dropdown-item">

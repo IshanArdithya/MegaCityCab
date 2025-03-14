@@ -398,6 +398,10 @@ nav .dropdown-greeting {
     color: #333;
 }
 
+.avatar-link {
+    display: flex;
+}
+
 nav .dropdown-item {
     display: flex;
     align-items: center;
@@ -773,7 +777,7 @@ nav .dropdown-item i {
 
 .footer-brand img {
     width: 55%;
-    height: 55%;
+    height: auto;
     object-fit: cover;
     vertical-align: middle;
 }
