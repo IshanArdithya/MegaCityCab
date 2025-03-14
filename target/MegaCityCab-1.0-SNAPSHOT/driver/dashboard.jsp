@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="com.mycompany.megacitycab.model.Booking"%>
+<%@page import="com.mycompany.megacitycab.dao.BookingDAO"%>
+<%@page import="java.util.List"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 
 <%@include file="driverSessionAuth.jsp" %>
@@ -6,6 +10,10 @@
         response.sendRedirect(request.getContextPath() + "/driverlogin.jsp");
         return;
     }
+
+        BookingDAO bookingDAO = new BookingDAO();
+            List<Booking> bookings = bookingDAO.getActiveDriverBookings();
+//            List<Booking> completedBookings = bookingDAO.getCompletedBookings();
 %>
 
 <%
@@ -42,12 +50,28 @@
                                     <th>Booking ID</th>
                                     <th>Customer Name</th>
                                     <th>Contact Number</th>
-                                    <th>Booking Date</th>
+                                    <th>Pickup</th>
+                                    <th>Dropoff</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Total Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <% for (Booking booking : bookings) {%>
+                                <tr>
+                                    <td><%= booking.getId()%></td>
+                                    <td><%= booking.getCustomerName()%></td>
+                                    <td><%= booking.getContactNumber()%></td>
+                                    <td><%= booking.getPickupLocation()%></td>
+                                    <td><%= booking.getDropoffLocation()%></td>
+                                    <td><%= booking.getDate()%></td>
+                                    <td><%= booking.getTime()%></td>
+                                    <td><%= booking.getTotalPrice()%></td>
 
+                                </tr>
+                                <% }%>
                             </tbody>
                         </table>
                     </div>

@@ -40,7 +40,7 @@ public class StaffLoginServlet extends HttpServlet {
                 session.setAttribute("staffRole", staffRole);
             }
 
-            response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/bookings.jsp");
         } else {
             response.sendRedirect(request.getContextPath() + "/adminlogin.jsp?error=1");
         }

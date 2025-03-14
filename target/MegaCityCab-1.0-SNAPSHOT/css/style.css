@@ -1537,7 +1537,11 @@ input {
 }
 
 .swal2-confirm {    
-    background: var(--primary-color);
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-color2)
+        );;
     box-shadow: none !important;
 }
 
@@ -1737,6 +1741,7 @@ input {
 .vehicle__btn {
     border: none;
     background: #f1f1f1;
+    color: black;
     padding: 12px;
     border-radius: 10px;
     display: flex;
@@ -1759,9 +1764,13 @@ input {
 }
 
 .vehicle__btn.active {
-    background: #ffcc00;
-    color: #222;
-    font-weight: 600;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-color2)
+        );
+    color: white;
+    border-color: #007bff;
 }
 
 .booking__inputs {

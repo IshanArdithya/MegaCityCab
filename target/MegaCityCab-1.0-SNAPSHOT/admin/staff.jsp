@@ -141,7 +141,6 @@
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Registered Date</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,11 +152,6 @@
                                     <td><%= staffuser.getEmail()%></td>
                                     <td><%= staffuser.getRole()%></td>
                                     <td><%= staffuser.getCreatedAt()%></td>
-                                    <td>
-                                        <button class="view-btn">
-                                            View
-                                        </button>
-                                    </td>
                                 </tr>
                                 <% }%>
                             </tbody>

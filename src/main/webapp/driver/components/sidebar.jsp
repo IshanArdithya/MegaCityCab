@@ -4,7 +4,7 @@
             <div class="toggle">
                 <div class="logo">
                     <a href="/MegaCityCab/driver/index.jsp">
-                        <img src="https://placehold.co/500x100" alt="Mega City Cab Logo">
+                        <img src="/MegaCityCab/images/logo.png" alt="Mega City Cab Logo">
                     </a>
                 </div>
             </div>

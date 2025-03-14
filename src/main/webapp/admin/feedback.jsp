@@ -54,10 +54,11 @@
                                     <th>Feedback ID</th>
                                     <th>Booking ID</th>
                                     <th>Customer ID</th>
+                                    <th>Ratings</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <tr><td colspan='9'>No Feedback found</td></tr>
                             </tbody>
                         </table>
                     </div>

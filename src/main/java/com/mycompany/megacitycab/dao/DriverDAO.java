@@ -134,5 +134,23 @@ public class DriverDAO {
 
         return drivers;
     }
+    
+    public List<Integer> getAvailableDrivers(String date, int passengerCount) {
+        List<Integer> availableDrivers = new ArrayList<>();
+        String query = "SELECT id FROM driver_users WHERE id NOT IN ("
+                     + "SELECT driver_id FROM bookings WHERE date = ?"
+                     + ") AND passenger_count >= ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, date);
+            stmt.setInt(2, passengerCount);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                availableDrivers.add(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return availableDrivers;
+    }
 }
 
