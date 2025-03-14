@@ -17,8 +17,9 @@ public class Booking {
     private Timestamp createdAt;
     private String customerName;
     private String contactNumber;
+    private String status;
 
-    public Booking(int id, int userId, String pickupLocation, String dropoffLocation, LocalDate date, LocalTime time, int driverId, double totalPrice, Timestamp createdAt) {
+    public Booking(int id, int userId, String pickupLocation, String dropoffLocation, LocalDate date, LocalTime time, int driverId, double totalPrice, String status, Timestamp createdAt) {
         this.id = id;
         this.userId = userId;
         this.pickupLocation = pickupLocation;
@@ -27,6 +28,7 @@ public class Booking {
         this.time = time;
         this.driverId = driverId;
         this.totalPrice = totalPrice;
+        this.status = status;
         this.createdAt = createdAt;
     }
 
@@ -92,6 +94,14 @@ public class Booking {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus() {
+        this.status = status;
     }
 
     public Timestamp getCreatedAt() {

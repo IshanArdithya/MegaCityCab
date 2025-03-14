@@ -20,6 +20,7 @@ com\mycompany\megacitycab\model\Driver.class
 com\mycompany\megacitycab\auth\CheckDB.class
 com\mycompany\megacitycab\model\User.class
 com\mycompany\megacitycab\servlets\DriverLogoutServlet.class
+com\mycompany\megacitycab\servlets\UpdateBookingStatusServlet.class
 com\mycompany\megacitycab\servlets\UserLogoutServlet.class
 com\mycompany\megacitycab\dao\ContactDAO.class
 com\mycompany\megacitycab\servlets\StaffAddServlet.class

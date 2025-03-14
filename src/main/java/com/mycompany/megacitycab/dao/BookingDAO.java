@@ -49,7 +49,7 @@ public class BookingDAO {
                 double totalPrice = rs.getDouble("total_price");
                 Timestamp createdAt = rs.getTimestamp("created_at");
 
-                Booking booking = new Booking(id, userId, pickupLocation, dropoffLocation, date, time, driverId, totalPrice, createdAt);
+                Booking booking = new Booking(id, userId, pickupLocation, dropoffLocation, date, time, driverId, totalPrice, null, createdAt);
                 bookings.add(booking);
             }
         } catch (SQLException e) {
@@ -71,7 +71,7 @@ public class BookingDAO {
                 String dropoffLocation = rs.getString("dropoff_location");
                 Timestamp createdAt = rs.getTimestamp("created_at");
 
-                Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, null, null, 0, 0.0, createdAt);
+                Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, null, null, 0, 0.0, null, createdAt);
                 bookings.add(booking);
             }
         } catch (SQLException e) {
@@ -80,39 +80,83 @@ public class BookingDAO {
 
         return bookings;
     }
-    
+
     public List<Booking> getActiveDriverBookings() {
-    List<Booking> bookings = new ArrayList<>();
-    String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price " +
-                   "FROM bookings b " +
-                   "JOIN users u ON b.user_id = u.id " +
-                   "WHERE b.driver_id IS NOT NULL " +
-                   "ORDER BY b.created_at DESC";
+        List<Booking> bookings = new ArrayList<>();
+        String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
+                + "FROM bookings b "
+                + "JOIN users u ON b.user_id = u.id "
+                + "WHERE b.driver_id IS NOT NULL AND b.status = 'pending' "
+                + "ORDER BY b.created_at DESC";
 
-    try (Connection conn = DatabaseConnection.getConnection(); 
-         PreparedStatement stmt = conn.prepareStatement(query); 
-         ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id = rs.getInt("id");
-            String firstName = rs.getString("first_name");
-            String lastName = rs.getString("last_name");
-            String contactNumber = rs.getString("contact_number");
-            String pickupLocation = rs.getString("pickup_location");
-            String dropoffLocation = rs.getString("dropoff_location");
-            LocalDate date = rs.getDate("date").toLocalDate();
-            LocalTime time = rs.getTime("time").toLocalTime();
-            double totalPrice = rs.getDouble("total_price");
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String contactNumber = rs.getString("contact_number");
+                String pickupLocation = rs.getString("pickup_location");
+                String dropoffLocation = rs.getString("dropoff_location");
+                LocalDate date = rs.getDate("date").toLocalDate();
+                LocalTime time = rs.getTime("time").toLocalTime();
+                double totalPrice = rs.getDouble("total_price");
 
-            Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, date, time, 0, totalPrice, null);
-            booking.setCustomerName(firstName + " " + lastName);
-            booking.setContactNumber(contactNumber);
-            bookings.add(booking);
+                Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, date, time, 0, totalPrice, null, null);
+                booking.setCustomerName(firstName + " " + lastName);
+                booking.setContactNumber(contactNumber);
+                bookings.add(booking);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+
+        return bookings;
     }
 
-    return bookings;
-}
+    public boolean updateBookingStatus(int bookingId, String status) {
+        String query = "UPDATE bookings SET status = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, status);
+            stmt.setInt(2, bookingId);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public List<Booking> getCompletedDriverBookings() {
+        List<Booking> bookings = new ArrayList<>();
+        String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
+                + "FROM bookings b "
+                + "JOIN users u ON b.user_id = u.id "
+                + "WHERE b.driver_id IS NOT NULL AND b.status = 'completed' "
+                + "ORDER BY b.created_at DESC";
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String contactNumber = rs.getString("contact_number");
+                String pickupLocation = rs.getString("pickup_location");
+                String dropoffLocation = rs.getString("dropoff_location");
+                LocalDate date = rs.getDate("date").toLocalDate();
+                LocalTime time = rs.getTime("time").toLocalTime();
+                double totalPrice = rs.getDouble("total_price");
+
+                Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, date, time, 0, totalPrice, null, null);
+                booking.setCustomerName(firstName + " " + lastName);
+                booking.setContactNumber(contactNumber);
+                bookings.add(booking);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bookings;
+    }
 }
