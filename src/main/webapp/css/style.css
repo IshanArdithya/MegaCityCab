@@ -33,6 +33,13 @@ body {
     font-size: 2.4rem;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--white-color) inset !important;
+}
+
 .main-title {
     font-size: 2.5rem;
     margin-bottom: 30px;
@@ -1035,7 +1042,7 @@ nav .dropdown-item i {
     background-color: #00000000;
     box-sizing: border-box;
     position: absolute;
-    z-index: 1111;
+    z-index: 111;
     transition: 0.1s ease;
 }
 
@@ -1047,7 +1054,7 @@ nav .dropdown-item i {
     background-color: transparent;
     box-sizing: border-box;
     position: absolute;
-    z-index: 1111;
+    z-index: 111;
     transition: 0.1s ease;
     resize: none;
 }
@@ -1075,7 +1082,7 @@ nav .dropdown-item i {
     line-height: 30px;
     padding: 0 12px;
     transform: translate(-15px, -16px) scale(0.88);
-    z-index: 1111;
+    z-index: 111;
 }
 
 .contact-form button {
@@ -1737,7 +1744,7 @@ input {
 
 .vehicle_selection span,
 .vehicle__info span {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -1757,14 +1764,14 @@ input {
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
 }
 
 .vehicle__btn i {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: #444;
 }
 
@@ -1778,14 +1785,20 @@ input {
         var(--primary-color),
         var(--primary-color2)
         );
-    color: white;
-    border-color: #007bff;
+    color: var(--white-color);
+}
+
+.booking__location-inputs {
+    margin-top: 0.8rem;
+}
+
+.booking__location-inputs input {
+    border-radius: 8px;
 }
 
 .booking__inputs {
     display: flex;
     gap: 12px;
-    margin-top: 12px;
     justify-content: space-between;
 }
 
@@ -1803,6 +1816,7 @@ input {
     font-size: 1.6rem;
     align-self: center;
     color: #777;
+    margin-bottom: 1.5rem;
 }
 
 .book__now {
@@ -1818,7 +1832,7 @@ input {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 15px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     transition: 0.3s;
 }
@@ -1850,16 +1864,21 @@ input {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #555;
 }
 
-.booking__price {
+.booking__price-section {
     background: #ffeeba;
     padding: 8px 14px;
     border-radius: 6px;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+.booking__price {
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
 }
 
 .checkout-form h3 {
@@ -1872,7 +1891,7 @@ input {
 }
 
 .checkout-form .entryarea input {
-    z-index: 111;
+    border-radius: 8px;
 }
 
 /* Driver Login */
@@ -2238,6 +2257,8 @@ input {
     font-size: 0.8rem;
 }
 
+/* Invoice */
+
 .invoice__container {
     max-width: 1000px;
     margin: 4rem auto;
@@ -2267,6 +2288,11 @@ input {
     margin-top: 0.3rem;
     font-size: 0.8rem;
     font-weight: 500;
+    color: #a8a8a8;
+}
+
+.invoice__booking-id {
+    font-size: 0.9rem;
     color: #a8a8a8;
 }
 

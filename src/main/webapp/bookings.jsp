@@ -22,11 +22,24 @@
                             <div class="vehicle_selection">
                                 <div class="booking__content-box booking__border">
                                     <span class="">Select Location</span>
-                                    <div class="booking__inputs">
-                                        <input type="text" id="pickupLocation" placeholder="Pickup Location">
-                                        <span class="arrow">➝</span>
-                                        <input type="text" id="dropoffLocation" placeholder="Drop Location">
+                                    <div class="booking__location-inputs">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="pickupLocation" name="pickupLocation" required>
+                                                    <div class="labelline">Pickup Location *</div>
+                                                </div>
+                                            </div>
+                                            <span class="arrow">➝</span>
+                                            <div class="form-group">
+                                                <div class="entryarea">
+                                                    <input type="text" id="dropoffLocation" name="dropOffLocation" required>
+                                                    <div class="labelline">Drop Location *</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="booking__inputs">
                                         <input type="datetime-local" id="bookingDateTime" value="2025-04-03T22:05">
                                     </div>
@@ -35,13 +48,13 @@
                                     <span>Select a Cab</span>
                                     <div class="vehicle__options">
                                         <a href="javascript:void(0)" class="vehicle__btn" data-passenger-count="4" onclick="selectVehicle(event, this)">
-                                            <i class="ri-car-fill"></i>4 Seater<span>LKR 0.00</span>
+                                            <i class="ri-car-fill"></i>4 Seater<span class="price">Loading...</span>
                                         </a>
                                         <a href="javascript:void(0)" class="vehicle__btn" data-passenger-count="9" onclick="selectVehicle(event, this)">
-                                            <i class="ri-bus-2-fill"></i>9 Seater<span>LKR 0.00</span>
+                                            <i class="ri-bus-2-fill"></i>9 Seater<span class="price">Loading...</span>
                                         </a>
                                         <a href="javascript:void(0)" class="vehicle__btn" data-passenger-count="14" onclick="selectVehicle(event, this)">
-                                            <i class="ri-bus-fill"></i>14 Seater<span>LKR 0.00</span>
+                                            <i class="ri-bus-fill"></i>14 Seater<span class="price">Loading...</span>
                                         </a>
                                     </div>
                                 </div>
@@ -124,18 +137,14 @@
                                 <div class="vehicle__info">
                                     <span>Information</span>
                                     <div>
-                                        <div class="vehicle__info-row">
-                                            <span class="booking__passengers vehicle__title">Civic</span>
-                                            <i class="ri-car-fill"></i>
-                                        </div>
                                         <div class="vehicle__feature-row">
-                                            <span class="booking__passengers"><i class="ri-user-line"></i> 3 passengers</span>
+                                            <span class="booking__passengers"><i class="ri-user-line"></i> <span class="passenger-count">...</span></span>
                                             <span class="booking__passengers"><i class="ri-snowflake-line"></i> Air Conditioned</span>
                                             <span class="booking__passengers"><i class="ri-luggage-deposit-line"></i> Spacious Luggage</span>
                                             <span class="booking__passengers"><i class="ri-money-dollar-box-line"></i> No Hidden Charges</span>
                                         </div>
                                         <div class="vehicle__features booking__passengers">
-                                            <span class="booking__price">Price: LKR 0.00</span>
+                                            <span class="booking__price-section">Est.Price: LKR <span class=booking__price>0.00</span>
                                         </div>
                                     </div>
                                 </div>
@@ -149,115 +158,7 @@
 
         <%@ include file="components/footer.jsp" %>
 
-        <script>
-    let selectedPassengerCount = null;
-
-    function selectVehicle(event, button) {
-        event.preventDefault();
-
-        const buttons = document.querySelectorAll('.vehicle__btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        button.classList.add('active');
-
-        selectedPassengerCount = button.getAttribute('data-passenger-count');
-
-        fetchPrice(selectedPassengerCount);
-    }
-
-    function fetchPrice(passengerCount) {
-        fetch('/MegaCityCab/getPrice?passengerCount=' + passengerCount)
-            .then(response => response.json())
-            .then(data => {
-                const priceElement = document.querySelector('.booking__price');
-                const price = parseFloat(data.price);
-                if (!isNaN(price)) {
-                    priceElement.textContent = `Price: LKR ${price.toFixed(2)}`;
-                } else {
-                    console.error("Invalid price value:", data.price);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching price:', error);
-            });
-    }
-
-    function showCheckoutForm() {
-        if (!selectedPassengerCount) {
-            alert("Please select a vehicle.");
-            return;
-        }
-
-        // display checkout form
-        document.getElementById('checkoutForm').style.display = 'block';
-    }
-
-    function confirmBooking() {
-    const pickupLocation = document.getElementById('pickupLocation').value;
-    const dropoffLocation = document.getElementById('dropoffLocation').value;
-    const bookingDateTime = document.getElementById('bookingDateTime').value;
-    const [date, time] = bookingDateTime.split('T');
-
-    const billingData = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        address1: document.getElementById('address1').value,
-        address2: document.getElementById('address2').value,
-        city: document.getElementById('city').value,
-        phoneNumber: document.getElementById('phoneNumber').value,
-        email: document.getElementById('email').value,
-        pickupLocation: pickupLocation,
-        dropoffLocation: dropoffLocation,
-        date: date,
-        time: time,
-        passengerCount: parseInt(selectedPassengerCount)
-    };
-
-    // Send billing data to server
-    fetch('/MegaCityCab/book', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(billingData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log(data.bookingId);
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Booking Successful!',
-                text: 'Your booking has been confirmed.',
-                showCancelButton: true,
-                confirmButtonText: 'View Invoice',
-                cancelButtonText: 'Close',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // redirect to invoice
-                    window.location.href = "/MegaCityCab/invoice?bookingId=" + data.bookingId;
-                }
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Failed to save booking: ' + data.message,
-                confirmButtonText: 'OK'
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error booking:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'An error occurred while processing your booking.',
-            confirmButtonText: 'OK'
-        });
-    });
-}
-        </script>
+        <script src="js/bookings.js"></script>
+        <script src="js/contactus.js"></script>
     </body>
 </html>

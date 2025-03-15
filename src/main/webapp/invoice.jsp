@@ -27,11 +27,11 @@
                 <div class="invoice__container">
                     <div class="invoice__section">
                         <h3>Invoice</h3>
+                        <p class="invoice__booking-id">#<span><%= booking.getId()%></span></p>
                         <div class="invoice__header-main">
                             <div>
                                 <div class="invoice__header-section">
                                     <h4><%= billingAddress.getFirstName()%> <%= billingAddress.getLastName()%></h4>
-                                    <p>Booking Number: <span><%= booking.getId()%></span></p>
                                     <p>Email: <span><%= billingAddress.getEmail()%></span></p>
                                     <p>Contact Number: <span><%= billingAddress.getPhoneNumber()%></span></p>
                                 </div>
@@ -58,7 +58,7 @@
                                             </span>
                                         </td>
                                         <td>1</td>
-                                        <td><%= booking.getTotalPrice()%></td>
+                                        <td>LKR <%= booking.getTotalPrice()%></td>
                                     </tr>
 
                                     <tr class="spacer-row">
@@ -68,7 +68,7 @@
                                     <tr class="subtotal">
                                         <td></td>
                                         <td class="subtotal-td">Subtotal</td>
-                                        <td class="subtotal-td" align="right"><%= booking.getTotalPrice()%></td>
+                                        <td class="subtotal-td" align="right">LKR <%= booking.getTotalPrice()%></td>
                                     </tr>
 
                                     <tr>
@@ -86,7 +86,7 @@
                                     <tr>
                                         <td></td>
                                         <td class="subtotal-total-td"><strong>Total</strong></td>
-                                        <td class="subtotal-total-td" align="right"><strong><%= booking.getTotalPrice()%></strong></td>
+                                        <td class="subtotal-total-td" align="right"><strong>LKR <%= booking.getTotalPrice()%></strong></td>
                                     </tr>
                                 </tbody>
                             </table>
