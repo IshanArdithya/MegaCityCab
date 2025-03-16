@@ -24,23 +24,23 @@ public class DatabaseConnection {
             if (connection == null || connection.isClosed()) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Info: Database connection established successfully.");
+                System.out.println("Info: DB connection established successfully.");
             }
         } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Error: Failed to initialize database connection: " + e.getMessage());
-            throw new RuntimeException("Database connection error", e);
+            System.err.println("Error: Failed to initialize db connection: " + e.getMessage());
+            throw new RuntimeException("DB connection error", e);
         }
     }
 
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
-                System.out.println("Info: Reconnecting to the database..");
+                System.out.println("Info: Reconnecting to the db..");
                 setupConnection();
             }
         } catch (SQLException e) {
-            System.err.println("Error: Database connection check failed: " + e.getMessage());
-            throw new RuntimeException("Error retrieving database connection", e);
+            System.err.println("Error: DB connection check failed: " + e.getMessage());
+            throw new RuntimeException("Error retrieving db connection", e);
         }
         return connection;
     }
@@ -49,9 +49,9 @@ public class DatabaseConnection {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Info: Database connection closed successfully.");
+                System.out.println("Info: DB connection closed successfully.");
             } catch (SQLException e) {
-                System.err.println("Error: Error while closing database connection: " + e.getMessage());
+                System.err.println("Error: Error while closing db connection: " + e.getMessage());
             }
         }
     }
@@ -59,12 +59,12 @@ public class DatabaseConnection {
     public static void testConnection() {
         try (Connection conn = getConnection()) {
             if (conn != null && !conn.isClosed()) {
-                System.out.println("Success: Database connection is active!");
+                System.out.println("Success: DB connection is active!");
             } else {
-                System.out.println("Warning: Database connection is not active.");
+                System.out.println("Warning: DB connection is not active.");
             }
         } catch (SQLException e) {
-            System.err.println("Error: Database connection test failed: " + e.getMessage());
+            System.err.println("Error: DB connection test failed: " + e.getMessage());
         }
     }
 }

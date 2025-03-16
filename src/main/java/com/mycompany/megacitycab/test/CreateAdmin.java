@@ -1,5 +1,7 @@
-package com.mycompany.megacitycab.auth;
+package com.mycompany.megacitycab.test;
 
+import com.mycompany.megacitycab.auth.DatabaseConnection;
+import com.mycompany.megacitycab.auth.PasswordHasher;
 import com.mycompany.megacitycab.dao.StaffDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +31,7 @@ public class CreateAdmin {
         if (staffDAO.registerStaff(firstName, lastName, email, role, password)) {
             System.out.println("Admin created successfully!");
             System.out.println("Email: " + email);
-            System.out.println("Password: " + hashedPassword);
+            System.out.println("Password: " + password);
         } else {
             System.out.println("Failed to create admin.");
         }

@@ -16,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
-        <div class="nav-a-dark">
+        <div class="nav-a-dark nav-driver">
             <%@ include file="components/header.jsp" %>
             <div class="driver__flex-container">
                 <div class="driver__container">

@@ -11,7 +11,9 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <a href="/MegaCityCab/index.jsp"><img src="/MegaCityCab/images/logo-white.png" alt=""></a>
+                    <a href="/MegaCityCab/index.jsp">
+                        <span class="logo-text">Mega City Cab</span>
+                    </a>
                 </div>
                 <ul>
                     <li class="main-navigation"><a href="/MegaCityCab/index.jsp">Home</a></li>
