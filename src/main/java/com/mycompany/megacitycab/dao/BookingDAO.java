@@ -89,15 +89,17 @@ public class BookingDAO {
         return bookings;
     }
 
-    public List<Booking> getActiveDriverBookings() {
+    public List<Booking> getActiveDriverBookings(int driverId) {
         List<Booking> bookings = new ArrayList<>();
         String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
                 + "FROM bookings b "
                 + "JOIN users u ON b.user_id = u.id "
-                + "WHERE b.driver_id IS NOT NULL AND b.status = 'pending' "
+                + "WHERE b.driver_id = ? AND b.status = 'pending' "
                 + "ORDER BY b.created_at DESC";
 
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, driverId); // set driver_id
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -135,61 +137,63 @@ public class BookingDAO {
         }
     }
 
-    public List<Booking> getCompletedDriverBookings() {
-        List<Booking> bookings = new ArrayList<>();
-        String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
-                + "FROM bookings b "
-                + "JOIN users u ON b.user_id = u.id "
-                + "WHERE b.driver_id IS NOT NULL AND b.status = 'completed' "
-                + "ORDER BY b.created_at DESC";
+    public List<Booking> getCompletedDriverBookings(int driverId) {
+    List<Booking> bookings = new ArrayList<>();
+    String query = "SELECT b.id, u.first_name, u.last_name, u.contact_number, b.pickup_location, b.dropoff_location, b.date, b.time, b.total_price "
+            + "FROM bookings b "
+            + "JOIN users u ON b.user_id = u.id "
+            + "WHERE b.driver_id = ? AND b.status = 'completed' "
+            + "ORDER BY b.created_at DESC";
 
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                String contactNumber = rs.getString("contact_number");
-                String pickupLocation = rs.getString("pickup_location");
-                String dropoffLocation = rs.getString("dropoff_location");
-                LocalDate date = rs.getDate("date").toLocalDate();
-                LocalTime time = rs.getTime("time").toLocalTime();
-                double totalPrice = rs.getDouble("total_price");
-
-                Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, date, time, 0, totalPrice, null, null);
-                booking.setCustomerName(firstName + " " + lastName);
-                booking.setContactNumber(contactNumber);
-                bookings.add(booking);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return bookings;
-    }
-    
-    public Booking getBookingById(int bookingId) {
-    String query = "SELECT * FROM bookings WHERE id = ?";
     try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setInt(1, bookingId);
+        stmt.setInt(1, driverId); // set driver_id
         ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            return new Booking(
-                rs.getInt("id"),
-                rs.getInt("user_id"),
-                rs.getString("pickup_location"),
-                rs.getString("dropoff_location"),
-                rs.getDate("date").toLocalDate(),
-                rs.getTime("time").toLocalTime(),
-                rs.getInt("driver_id"),
-                rs.getDouble("total_price"),
-                rs.getString("status"),
-                rs.getTimestamp("created_at")
-            );
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String contactNumber = rs.getString("contact_number");
+            String pickupLocation = rs.getString("pickup_location");
+            String dropoffLocation = rs.getString("dropoff_location");
+            LocalDate date = rs.getDate("date").toLocalDate();
+            LocalTime time = rs.getTime("time").toLocalTime();
+            double totalPrice = rs.getDouble("total_price");
+
+            Booking booking = new Booking(id, 0, pickupLocation, dropoffLocation, date, time, 0, totalPrice, null, null);
+            booking.setCustomerName(firstName + " " + lastName);
+            booking.setContactNumber(contactNumber);
+            bookings.add(booking);
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return null;
+
+    return bookings;
 }
+
+    public Booking getBookingById(int bookingId) {
+        String query = "SELECT * FROM bookings WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, bookingId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Booking(
+                        rs.getInt("id"),
+                        rs.getInt("user_id"),
+                        rs.getString("pickup_location"),
+                        rs.getString("dropoff_location"),
+                        rs.getDate("date").toLocalDate(),
+                        rs.getTime("time").toLocalTime(),
+                        rs.getInt("driver_id"),
+                        rs.getDouble("total_price"),
+                        rs.getString("status"),
+                        rs.getTimestamp("created_at")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

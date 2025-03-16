@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DriverDAO {
-    
+
     public boolean authenticateDriver(String email, String password) {
-        
+
         String hashedPassword = PasswordHasher.hashPassword(password);
-        
+
         String query = "SELECT * FROM driver_users WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
@@ -42,7 +42,7 @@ public class DriverDAO {
         }
         return null;
     }
-    
+
     public boolean emailExists(String email) {
         String query = "SELECT * FROM driver_users WHERE email = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -59,7 +59,7 @@ public class DriverDAO {
         if (emailExists(email)) {
             return false;
         }
-        
+
         String hashedPassword = PasswordHasher.hashPassword(password);
 
         String query = "INSERT INTO driver_users (first_name, last_name, email, contact_number, home_address, nic, password, gender, vehicle_name, passenger_count, vehicle_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -82,7 +82,7 @@ public class DriverDAO {
             return false;
         }
     }
-    
+
     public List<Driver> getAllDrivers() {
         List<Driver> drivers = new ArrayList<>();
         String query = "SELECT id, first_name, last_name, gender, email, home_address, nic, contact_number, vehicle_name, passenger_count, vehicle_number, created_at FROM driver_users";
@@ -112,7 +112,7 @@ public class DriverDAO {
 
         return drivers;
     }
-    
+
     public List<Driver> getRecentDrivers() {
         List<Driver> drivers = new ArrayList<>();
         String query = "SELECT id, first_name, last_name, created_at FROM driver_users ORDER BY created_at DESC LIMIT 10";
@@ -134,12 +134,12 @@ public class DriverDAO {
 
         return drivers;
     }
-    
+
     public List<Integer> getAvailableDrivers(String date, int passengerCount) {
         List<Integer> availableDrivers = new ArrayList<>();
         String query = "SELECT id FROM driver_users WHERE id NOT IN ("
-                     + "SELECT driver_id FROM bookings WHERE date = ?"
-                     + ") AND passenger_count >= ?";
+                + "SELECT driver_id FROM bookings WHERE date = ?"
+                + ") AND passenger_count >= ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, date);
             stmt.setInt(2, passengerCount);
@@ -152,5 +152,18 @@ public class DriverDAO {
         }
         return availableDrivers;
     }
-}
 
+    public int getDriverIdByEmail(String email) {
+        String query = "SELECT id FROM driver_users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+}

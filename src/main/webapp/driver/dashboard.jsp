@@ -2,6 +2,7 @@
 
 <%@page import="com.mycompany.megacitycab.model.Booking"%>
 <%@page import="com.mycompany.megacitycab.dao.BookingDAO"%>
+<%@page import="com.mycompany.megacitycab.dao.DriverDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 
@@ -10,14 +11,20 @@
         response.sendRedirect(request.getContextPath() + "/driverlogin.jsp");
         return;
     }
+    // fetch driver email
+    String driverEmail = (String) driverSession.getAttribute("driver_email");
+
+    // fetch driver id by email
+    DriverDAO driverDAO = new DriverDAO();
+    int driverId = driverDAO.getDriverIdByEmail(driverEmail);
 
     BookingDAO bookingDAO = new BookingDAO();
-    List<Booking> bookings = bookingDAO.getActiveDriverBookings();
-    List<Booking> completedBookings = bookingDAO.getCompletedDriverBookings();
+    List<Booking> bookings = bookingDAO.getActiveDriverBookings(driverId);
+    List<Booking> completedBookings = bookingDAO.getCompletedDriverBookings(driverId);
 %>
 
 <%
-    String pageTitle = "Overview"; //header.jsp
+    String pageTitle = "Dashboard"; //header.jsp
 %>
 
 <!DOCTYPE html>
@@ -26,7 +33,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin | Mega City Cab</title>
+        <title>Driver | Mega City Cab</title>
 
         <link
             href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
@@ -132,44 +139,44 @@
                 button.addEventListener('click', function () {
                     const bookingId = this.getAttribute('data-booking-id');
 
-                                        fetch('/MegaCityCab/updateBookingStatus', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                            body: JSON.stringify({bookingId: bookingId, status: 'completed'})
-                                        })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    if (data.success) {
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Success!',
-                                                            text: 'Booking marked as completed!',
-                                                            confirmButtonText: 'OK'
-                                                        }).then(() => {
-                                                            location.reload();
-                                                        });
-                                                    } else {
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error!',
-                                                            text: 'Failed to update booking status: ' + data.message,
-                                                            confirmButtonText: 'OK'
-                                                        });
-                                                    }
-                                                })
-                                                .catch(error => {
-                                                    console.error('Error updating booking status:', error);
-                                                    Swal.fire({
-                                                        icon: 'error',
-                                                        title: 'Error!',
-                                                        text: 'An error occurred while updating the booking status.',
-                                                        confirmButtonText: 'OK'
-                                                    });
-                                                });
+                    fetch('/MegaCityCab/updateBookingStatus', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({bookingId: bookingId, status: 'completed'})
+                    })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success!',
+                                        text: 'Booking marked as completed!',
+                                        confirmButtonText: 'OK'
+                                    }).then(() => {
+                                        location.reload();
                                     });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error!',
+                                        text: 'Failed to update booking status: ' + data.message,
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating booking status:', error);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred while updating the booking status.',
+                                    confirmButtonText: 'OK'
                                 });
-        </script>
+                            });
+                });
+            });
+            </script>
     </body>
 </html>
